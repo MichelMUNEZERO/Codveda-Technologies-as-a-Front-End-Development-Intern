@@ -125,3 +125,36 @@ if (searchForm) {
     // In a real application, this would trigger a search API call
   });
 }
+
+// Service Section - Scroll Animation for Service Cards
+// Service Section - Scroll Animation for Service Cards
+document.querySelectorAll(".service-card").forEach((card) => {
+  card.style.opacity = "0";
+  card.style.transform = "translateY(30px)";
+  card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+  observer.observe(card);
+});
+
+// Service Card Flip Animation
+document.querySelectorAll(".service-card").forEach((card) => {
+  card.addEventListener("click", () => {
+    card.classList.toggle("flipped");
+  });
+});
+
+// Contact Us Button
+const contactBtn = document.querySelector(".btn-contact");
+if (contactBtn) {
+  contactBtn.addEventListener("click", () => {
+    const contactConfirm = confirm(
+      "Would you like to speak with one of our luxury travel specialists?\\n\\nClick OK to proceed to contact form.",
+    );
+
+    if (contactConfirm) {
+      alert(
+        "Thank you for your interest!\\n\\nOur team will contact you within 24 hours.\\n\\nEmail: michelmunezero@gmail.com\\nPhone: + (250) 780-197-780",
+      );
+      // In a real application, this would open a contact form or redirect to contact page
+    }
+  });
+}
