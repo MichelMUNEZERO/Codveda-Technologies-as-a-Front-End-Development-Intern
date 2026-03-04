@@ -158,3 +158,59 @@ if (contactBtn) {
     }
   });
 }
+
+// Blog Section - Scroll Animation for Blog Cards
+document.querySelectorAll(".blog-card").forEach((card) => {
+  card.style.opacity = "0";
+  card.style.transform = "translateY(30px)";
+  card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+  observer.observe(card);
+});
+
+// Blog Read More Buttons
+document.querySelectorAll(".btn-read-more").forEach((button) => {
+  button.addEventListener("click", function () {
+    const blogCard = this.closest(".blog-card");
+    const blogTitle = blogCard.querySelector(".blog-title").textContent;
+
+    alert(
+      `Opening article: "${blogTitle}"\\n\\nThis would redirect to the full article page.`,
+    );
+    // In a real application, this would redirect to the full blog post
+  });
+});
+
+// View All Blog Articles Button
+const viewAllBlogBtn = document.querySelector(".btn-view-all-blog");
+if (viewAllBlogBtn) {
+  viewAllBlogBtn.addEventListener("click", () => {
+    alert(
+      "Explore our complete collection of travel articles and guides!\\n\\nRedirecting to blog page...",
+    );
+    // In a real application, this would redirect to a blog catalog page
+  });
+}
+
+// Contact Form Submission
+const contactForm = document.querySelector(".contact-form");
+if (contactForm) {
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("message").value;
+
+    // Display success message
+    alert(
+      `Thank you for contacting us, ${name}!\n\nWe have received your message about "${subject}".\n\nOur team will respond to ${email} within 24 hours.\n\nBest regards,\nElite Travel Experiences Team`,
+    );
+
+    // Reset form
+    contactForm.reset();
+
+    // In a real application, this would send the data to a server
+  });
+}
