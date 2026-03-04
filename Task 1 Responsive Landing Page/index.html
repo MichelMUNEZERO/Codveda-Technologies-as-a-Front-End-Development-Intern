@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Privé Journeys - Explore luxury travel like never before. Exclusive destinations, personalized experiences, unforgettable memories."
+    />
+    <title>Privé Journeys - Luxury Travel Experiences</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="logo">
+            <img src="Photo/Logo.png" alt="Privé Journeys" class="logo-img">
+          </div>
+          <ul class="nav-menu">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#tours" class="nav-link">Tours</a></li>
+            <li><a href="#service" class="nav-link">Service</a></li>
+            <li><a href="#blog" class="nav-link">Blog</a></li>
+          </ul>
+          <button class="btn-message">Message</button>
+          <button class="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+          <div class="hero-text">
+            <h2 class="hero-title">EXPLORE LUXURY TRAVEL LIKE NEVER BEFORE</h2>
+            <p class="hero-subtitle">
+              Exclusive destinations, personalized experiences, unforgettable
+              memories
+            </p>
+            <button class="btn-explore">
+              Explore offerings
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path
+                  d="M4 10H16M16 10L10 4M16 10L10 16"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Search Form -->
+        <div class="search-container">
+          <form class="search-form">
+            <div class="form-group">
+              <label for="destination">Destination</label>
+              <select id="destination" name="destination">
+                <option value="tokyo">Tokyo, Japan</option>
+                <option value="paris">Paris, France</option>
+                <option value="maldives">Maldives</option>
+                <option value="dubai">Dubai, UAE</option>
+                <option value="santorini">Santorini, Greece</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="travel-style">Travel style</label>
+              <select id="travel-style" name="travel-style">
+                <option value="urban">Urban Explorer</option>
+                <option value="beach">Beach Relaxation</option>
+                <option value="adventure">Adventure Seeker</option>
+                <option value="cultural">Cultural Experience</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="dates">Dates</label>
+              <select id="dates" name="dates">
+                <option value="sep">10-26 September</option>
+                <option value="oct">1-15 October</option>
+                <option value="nov">5-20 November</option>
+                <option value="dec">10-25 December</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="travelers">Travelers</label>
+              <select id="travelers" name="travelers">
+                <option value="2">2 adults</option>
+                <option value="1">1 adult</option>
+                <option value="3">3 adults</option>
+                <option value="4">4 adults</option>
+                <option value="family">Family (2 adults, 2 children)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-search">Search</button>
+          </form>
+        </div>
+      </section>
+
+      
+
+    <script src="script.js"></script>
+  </body>
+</html>
