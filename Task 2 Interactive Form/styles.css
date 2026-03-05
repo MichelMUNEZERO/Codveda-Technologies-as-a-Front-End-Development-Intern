@@ -21,14 +21,17 @@ body {
 
 /* Form Container */
 .form-container {
-  background: white;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
   border-radius: 0;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 2px rgba(255, 255, 255, 0.2);
   width: 100%;
   max-width: 750px;
   overflow: hidden;
   position: relative;
-  border: 3px solid #4a90e2;
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 /* Progress Dots */
@@ -38,23 +41,30 @@ body {
   align-items: center;
   gap: 15px;
   padding: 25px 0 20px;
-  background: white;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .dot {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #d1d5db;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   transition: all 0.3s ease;
 }
 
 .dot.active {
-  background: #1e3a8a;
+  background: #4a90e2;
+  border-color: #4a90e2;
+  box-shadow: 0 0 15px rgba(74, 144, 226, 0.6);
 }
 
 .dot.completed {
   background: #10b981;
+  border-color: #10b981;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
 }
 
 /* Form Pages */
@@ -96,15 +106,18 @@ form {
 .form-group label {
   display: block;
   font-size: 15px;
-  font-weight: 400;
-  color: #1f2937;
+  font-weight: 500;
+  color: #ffffff;
   margin-bottom: 8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .form-group.full-width .main-label {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 15px;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Form Row */
@@ -121,18 +134,24 @@ form {
 .form-group input[type="tel"] {
   width: 100%;
   padding: 12px 14px;
-  border: 1px solid #d1d5db;
-  background: #e5e7eb;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
   border-radius: 0;
   font-size: 14px;
-  color: #1f2937;
+  color: #ffffff;
   transition: all 0.2s ease;
+}
+
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .form-group input:focus {
   outline: none;
   border-color: #4a90e2;
-  background: #f3f4f6;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(74, 144, 226, 0.4);
 }
 
 .form-group input.error {
@@ -184,7 +203,8 @@ form {
   bottom: -20px;
   left: 0;
   font-size: 12px;
-  color: #6b7280;
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .input-helper {
@@ -192,7 +212,8 @@ form {
   bottom: -20px;
   left: 0;
   font-size: 11px;
-  color: #9ca3af;
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Name Group */
@@ -213,11 +234,13 @@ form {
 .error-message {
   display: none;
   font-size: 12px;
-  color: #ef4444;
+  color: #ff6b6b;
   margin-top: 4px;
   position: absolute;
   bottom: -20px;
   left: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: 500;
 }
 
 .error-message.show {
@@ -264,8 +287,9 @@ textarea {
   align-items: center;
   cursor: pointer;
   font-size: 14px;
-  color: #374151;
+  color: #ffffff;
   user-select: none;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .checkbox-label input[type="checkbox"] {
@@ -273,11 +297,11 @@ textarea {
   height: 18px;
   margin-right: 10px;
   cursor: pointer;
-  accent-color: #667eea;
+  accent-color: #4a90e2;
 }
 
 .checkbox-label span {
-  color: #4169e1;
+  color: #ffffff;
 }
 
 /* Radio Group */
@@ -292,7 +316,8 @@ textarea {
   align-items: center;
   cursor: pointer;
   font-size: 14px;
-  color: #374151;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   user-select: none;
 }
 
@@ -301,7 +326,7 @@ textarea {
   height: 18px;
   margin-right: 10px;
   cursor: pointer;
-  accent-color: #667eea;
+  accent-color: #4a90e2;
 }
 
 /* Form Actions */
@@ -310,7 +335,8 @@ textarea {
   justify-content: flex-end;
   gap: 15px;
   padding: 20px 40px 30px;
-  border-top: 1px solid #e5e7eb;
+  background: rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Buttons */
@@ -339,10 +365,15 @@ textarea {
 /* Divider Line */
 .divider {
   height: 1px;
-  background: #4a90e2;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
   margin: 30px 0;
   border: none;
-  opacity: 0.3;
+  box-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
 }
 
 /* Checkbox Row */
@@ -357,8 +388,9 @@ textarea {
   align-items: center;
   cursor: pointer;
   font-size: 14px;
-  color: #1f2937;
+  color: #ffffff;
   user-select: none;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .checkbox-row .checkbox-label input[type="checkbox"] {
@@ -370,16 +402,18 @@ textarea {
 }
 
 .checkbox-row .checkbox-label span {
-  color: #1f2937;
+  color: #ffffff;
 }
 
 .btn-back {
-  background: #e5e7eb;
-  color: #374151;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .btn-back:hover {
-  background: #d1d5db;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
 
 .btn-submit {
@@ -469,14 +503,16 @@ textarea {
 
 .summary-container h2 {
   font-size: 22px;
-  color: #1f2937;
+  color: #ffffff;
   margin-bottom: 20px;
   font-weight: 600;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 #summaryContent {
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   padding: 20px;
 }
@@ -484,7 +520,7 @@ textarea {
 .summary-item {
   margin-bottom: 15px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .summary-item:last-child {
@@ -496,7 +532,7 @@ textarea {
 .summary-label {
   font-size: 12px;
   font-weight: 600;
-  color: #6b7280;
+  color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 5px;
@@ -504,7 +540,8 @@ textarea {
 
 .summary-value {
   font-size: 14px;
-  color: #1f2937;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Success Modal */
@@ -527,7 +564,10 @@ textarea {
 }
 
 .modal-content {
-  background: white;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 12px;
   padding: 40px;
   text-align: center;
@@ -572,13 +612,15 @@ textarea {
 
 .modal-content h2 {
   font-size: 24px;
-  color: #1f2937;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   margin-bottom: 10px;
 }
 
 .modal-content p {
   font-size: 14px;
-  color: #6b7280;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   margin-bottom: 25px;
   line-height: 1.5;
 }
