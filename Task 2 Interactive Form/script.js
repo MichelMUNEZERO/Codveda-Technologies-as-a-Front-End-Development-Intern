@@ -1,7 +1,7 @@
 // Wait for DOM to load
 document.addEventListener("DOMContentLoaded", function () {
   // Get form elements
-  const form = document.getElementById("reservationForm");
+  const form = document.getElementById("contactForm");
   const page1 = document.getElementById("page1");
   const page2 = document.getElementById("page2");
   const nextBtn = document.getElementById("nextBtn");
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const successModal = document.getElementById("successModal");
   const closeModal = document.getElementById("closeModal");
   const summaryContainer = document.getElementById("summaryContainer");
-  const dragArea = document.querySelector(".drag-area");
+  const progressDots = document.querySelectorAll(".dot");
 
   // Form data storage
   let formData = {};
@@ -46,10 +46,22 @@ document.addEventListener("DOMContentLoaded", function () {
         return "";
       },
     },
-    phone: {
+    whatsapp: {
       validate: (value) => {
-        if (!value.trim()) return "Phone number is required";
-        const phoneRegex = /^[\d\s\-\(\)]+$/;
+        if (!value.trim()) return "WhatsApp number is required";
+        const phoneRegex = /^[\d\s\-\(\)+]+$/;
+        if (!phoneRegex.test(value))
+          return "Please enter a valid WhatsApp number";
+        const digits = value.replace(/\D/g, "");
+        if (digits.length < 10)
+          return "WhatsApp number must be at least 10 digits";
+        return "";
+      },
+    },
+    callPhone: {
+      validate: (value) => {
+        if (!value.trim()) return "Call phone is required";
+        const phoneRegex = /^[\d\s\-\(\)+]+$/;
         if (!phoneRegex.test(value)) return "Please enter a valid phone number";
         const digits = value.replace(/\D/g, "");
         if (digits.length < 10)
@@ -57,23 +69,31 @@ document.addEventListener("DOMContentLoaded", function () {
         return "";
       },
     },
-    visitDate: {
+    city: {
       validate: (value) => {
-        if (!value) return "Visit date is required";
-        const selectedDate = new Date(value);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        if (selectedDate < today) return "Visit date cannot be in the past";
+        if (!value.trim()) return "City is required";
+        if (value.trim().length < 2)
+          return "City must be at least 2 characters";
         return "";
       },
     },
-    groupSize: {
+    address: {
       validate: (value) => {
-        if (!value) return "Group size is required";
-        const num = parseInt(value);
-        if (isNaN(num) || num < 1) return "Group size must be at least 1";
-        if (num > 100) return "Group size cannot exceed 100";
+        if (!value.trim()) return "Address is required";
+        if (value.trim().length < 5)
+          return "Address must be at least 5 characters";
         return "";
+      },
+    },
+    state: {
+      validate: (value) => {
+        if (!value.trim()) return "State is required";
+        return "";
+      },
+    },
+    zipCode: {
+      validate: (value) => {
+        if (!value.trim()) return "Zip code is required";
       },
     },
   };
@@ -82,18 +102,11 @@ document.addEventListener("DOMContentLoaded", function () {
   initializeForm();
 
   function initializeForm() {
-    // Set default date to today
-    const today = new Date().toISOString().split("T")[0];
-    document.getElementById("visitDate").value = today;
-
     // Add event listeners to all input fields
     addInputListeners();
 
     // Add phone format listener
-    addPhoneFormatter();
-
-    // Add contact method listener
-    addContactMethodListener();
+    addPhoneFormatters();
 
     // Navigation button listeners
     nextBtn.addEventListener("click", handleNext);
@@ -108,9 +121,13 @@ document.addEventListener("DOMContentLoaded", function () {
       "firstName",
       "lastName",
       "email",
-      "phone",
-      "visitDate",
-      "groupSize",
+      "whatsapp",
+      "callPhone",
+      "city",
+      "address",
+      "extraField",
+      "state",
+      "zipCode",
     ];
 
     textInputs.forEach((inputId) => {
@@ -136,66 +153,32 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
     });
+  }
 
-    // Textareas
-    const textareas = ["additionalInfo", "referralSource"];
-    textareas.forEach((textareaId) => {
-      const textarea = document.getElementById(textareaId);
-      if (textarea) {
-        textarea.addEventListener("focus", function () {
-          this.parentElement.classList.add("focused");
+  function addPhoneFormatters() {
+    const phoneInputs = ["whatsapp", "callPhone"];
+    phoneInputs.forEach((inputId) => {
+      const phoneInput = document.getElementById(inputId);
+      if (phoneInput) {
+        phoneInput.addEventListener("input", function (e) {
+          let value = e.target.value.replace(/\D/g, "");
+          let formattedValue = "";
+
+          if (value.length > 0) {
+            formattedValue = "(" + value.substring(0, 3);
+          }
+          if (value.length >= 4) {
+            formattedValue += ") " + value.substring(3, 6);
+          }
+          if (value.length >= 7) {
+            formattedValue += "-" + value.substring(6, 10);
+          }
+
+          e.target.value = formattedValue;
         });
-
-        textarea.addEventListener("blur", function () {
-          this.parentElement.classList.remove("focused");
-        });
       }
     });
   }
-
-  function addPhoneFormatter() {
-    const phoneInput = document.getElementById("phone");
-    phoneInput.addEventListener("input", function (e) {
-      let value = e.target.value.replace(/\D/g, "");
-      let formattedValue = "";
-
-      if (value.length > 0) {
-        formattedValue = "(" + value.substring(0, 3);
-      }
-      if (value.length >= 4) {
-        formattedValue += ") " + value.substring(3, 6);
-      }
-      if (value.length >= 7) {
-        formattedValue += "-" + value.substring(6, 10);
-      }
-
-      e.target.value = formattedValue;
-    });
-  }
-
-  function addContactMethodListener() {
-    const contactCheckboxes = document.querySelectorAll(
-      'input[name="contact"]',
-    );
-    const callbackGroup = document.getElementById("callbackGroup");
-    const contactPhone = document.getElementById("contactPhone");
-
-    contactCheckboxes.forEach((checkbox) => {
-      checkbox.addEventListener("change", function () {
-        // Show callback time if phone is selected
-        if (
-          contactPhone.checked ||
-          document.querySelector('input[name="contact"][value="either"]')
-            .checked
-        ) {
-          callbackGroup.style.display = "block";
-        } else {
-          callbackGroup.style.display = "none";
-        }
-      });
-    });
-  }
-
   function validateField(input) {
     const fieldName = input.id || input.name;
     const value = input.value;
@@ -245,9 +228,12 @@ document.addEventListener("DOMContentLoaded", function () {
       "firstName",
       "lastName",
       "email",
-      "phone",
-      "visitDate",
-      "groupSize",
+      "whatsapp",
+      "callPhone",
+      "city",
+      "address",
+      "state",
+      "zipCode",
     ];
     requiredInputs.forEach((inputId) => {
       const input = document.getElementById(inputId);
@@ -256,29 +242,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Validate at least one tour selected
-    const toursChecked = document.querySelectorAll(
-      'input[name="tours"]:checked',
-    ).length;
-    const toursGroup = document
-      .querySelector('input[name="tours"]')
-      .closest(".form-group");
-    const toursError = toursGroup.querySelector(".error-message");
-
-    if (toursChecked === 0) {
-      toursError.textContent = "Please select at least one tour";
-      toursError.classList.add("show");
-      isValid = false;
-    } else {
-      toursError.classList.remove("show");
-    }
-
     // Validate at least one contact method selected
     const contactChecked = document.querySelectorAll(
-      'input[name="contact"]:checked',
+      'input[name="contactMethod"]:checked',
     ).length;
     const contactGroup = document
-      .querySelector('input[name="contact"]')
+      .querySelector('input[name="contactMethod"]')
       .closest(".form-group");
     const contactError = contactGroup.querySelector(".error-message");
 
@@ -290,27 +259,6 @@ document.addEventListener("DOMContentLoaded", function () {
       contactError.classList.remove("show");
     }
 
-    // Validate callback time if phone is selected
-    const contactPhone = document.getElementById("contactPhone");
-    const contactEither = document.querySelector(
-      'input[name="contact"][value="either"]',
-    );
-    if (contactPhone.checked || contactEither.checked) {
-      const callbackChecked = document.querySelector(
-        'input[name="callbackTime"]:checked',
-      );
-      const callbackGroup = document.getElementById("callbackGroup");
-      const callbackError = callbackGroup.querySelector(".error-message");
-
-      if (!callbackChecked) {
-        callbackError.textContent = "Please select a callback time";
-        callbackError.classList.add("show");
-        isValid = false;
-      } else {
-        callbackError.classList.remove("show");
-      }
-    }
-
     return isValid;
   }
 
@@ -319,34 +267,21 @@ document.addEventListener("DOMContentLoaded", function () {
       firstName: document.getElementById("firstName").value,
       lastName: document.getElementById("lastName").value,
       email: document.getElementById("email").value,
-      phone: document.getElementById("phone").value,
-      visitDate: document.getElementById("visitDate").value,
-      groupSize: document.getElementById("groupSize").value,
-      tours: Array.from(
-        document.querySelectorAll('input[name="tours"]:checked'),
-      ).map((cb) => cb.nextElementSibling.textContent),
+      whatsapp: document.getElementById("whatsapp").value,
+      callPhone: document.getElementById("callPhone").value,
+      city: document.getElementById("city").value,
+      address: document.getElementById("address").value,
+      extraField: document.getElementById("extraField")?.value || "N/A",
+      state: document.getElementById("state").value,
+      zipCode: document.getElementById("zipCode").value,
       contactMethods: Array.from(
-        document.querySelectorAll('input[name="contact"]:checked'),
+        document.querySelectorAll('input[name="contactMethod"]:checked'),
       ).map((cb) => cb.nextElementSibling.textContent),
-      callbackTime:
-        document.querySelector('input[name="callbackTime"]:checked')
-          ?.nextElementSibling?.textContent || "N/A",
-      additionalInfo: document.getElementById("additionalInfo").value || "None",
-      referralSource:
-        document.getElementById("referralSource").value || "Not specified",
     };
   }
 
   function displaySummary() {
     const summaryContent = document.getElementById("summaryContent");
-
-    const date = new Date(formData.visitDate);
-    const formattedDate = date.toLocaleDateString("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
 
     summaryContent.innerHTML = `
             <div class="summary-item">
@@ -358,47 +293,45 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="summary-value">${formData.email}</div>
             </div>
             <div class="summary-item">
-                <div class="summary-label">Phone Number</div>
-                <div class="summary-value">${formData.phone}</div>
+                <div class="summary-label">WhatsApp Number</div>
+                <div class="summary-value">${formData.whatsapp}</div>
             </div>
             <div class="summary-item">
-                <div class="summary-label">Visit Date</div>
-                <div class="summary-value">${formattedDate}</div>
+                <div class="summary-label">Call Phone</div>
+                <div class="summary-value">${formData.callPhone}</div>
             </div>
             <div class="summary-item">
-                <div class="summary-label">Group Size</div>
-                <div class="summary-value">${formData.groupSize} ${parseInt(formData.groupSize) === 1 ? "person" : "people"}</div>
+                <div class="summary-label">City</div>
+                <div class="summary-value">${formData.city}</div>
             </div>
             <div class="summary-item">
-                <div class="summary-label">Selected Tours</div>
-                <div class="summary-value">${formData.tours.join(", ")}</div>
+                <div class="summary-label">Address</div>
+                <div class="summary-value">${formData.address}</div>
             </div>
             <div class="summary-item">
-                <div class="summary-label">Contact Method</div>
+                <div class="summary-label">State</div>
+                <div class="summary-value">${formData.state}</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Zip Code</div>
+                <div class="summary-value">${formData.zipCode}</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Contact Methods</div>
                 <div class="summary-value">${formData.contactMethods.join(", ")}</div>
             </div>
-            <div class="summary-item">
-                <div class="summary-label">Callback Time</div>
-                <div class="summary-value">${formData.callbackTime}</div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-label">Additional Information</div>
-                <div class="summary-value">${formData.additionalInfo}</div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-label">How did you hear about us?</div>
-                <div class="summary-value">${formData.referralSource}</div>
-            </div>
         `;
-
-    dragArea.style.display = "none";
-    summaryContainer.style.display = "block";
   }
 
   function handleNext() {
     if (validateRequiredFields()) {
       collectFormData();
       displaySummary();
+
+      // Update progress dots
+      progressDots[0].classList.remove("active");
+      progressDots[0].classList.add("completed");
+      progressDots[1].classList.add("active");
 
       // Switch pages
       page1.classList.remove("active");
@@ -417,6 +350,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function handleBack() {
+    // Update progress dots
+    progressDots[1].classList.remove("active");
+    progressDots[0].classList.remove("completed");
+    progressDots[0].classList.add("active");
+
     page2.classList.remove("active");
     page1.classList.add("active");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -431,6 +369,11 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
       submitBtn.classList.remove("loading");
       submitBtn.disabled = false;
+
+      // Update progress dots
+      progressDots[1].classList.remove("active");
+      progressDots[1].classList.add("completed");
+      progressDots[2].classList.add("active");
 
       // Show success modal
       successModal.classList.add("show");
@@ -454,16 +397,11 @@ document.addEventListener("DOMContentLoaded", function () {
         el.classList.remove("valid", "error");
       });
 
-      // Reset date to today
-      const today = new Date().toISOString().split("T")[0];
-      document.getElementById("visitDate").value = today;
-
-      // Hide callback group
-      document.getElementById("callbackGroup").style.display = "none";
-
-      // Reset summary
-      dragArea.style.display = "flex";
-      summaryContainer.style.display = "none";
+      // Reset progress dots
+      progressDots.forEach((dot) => {
+        dot.classList.remove("active", "completed");
+      });
+      progressDots[0].classList.add("active");
 
       window.scrollTo({ top: 0, behavior: "smooth" });
     }, 300);
@@ -477,17 +415,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Real-time character count for textareas (optional enhancement)
-  const textareas = document.querySelectorAll("textarea");
-  textareas.forEach((textarea) => {
-    textarea.addEventListener("input", function () {
-      // Could add character count here if needed
-    });
-  });
-
-  // Prevent form submission on Enter key (except in textareas)
+  // Prevent form submission on Enter key
   form.addEventListener("keydown", function (e) {
-    if (e.key === "Enter" && e.target.tagName !== "TEXTAREA") {
+    if (e.key === "Enter") {
       e.preventDefault();
     }
   });

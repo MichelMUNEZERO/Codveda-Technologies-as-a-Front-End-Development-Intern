@@ -1,214 +1,161 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tour Reservation Form</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="form-container">
-        <!-- Page 1 -->
-        <div class="form-page active" id="page1">
-            <div class="form-header">
-                <h1>Tour Reservation Form</h1>
-                <p>Let's know what you are interested to see!</p>
+      <!-- Progress Indicator -->
+      <div class="progress-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+
+      <!-- Page 1 -->
+      <div class="form-page active" id="page1">
+        <form id="contactForm" novalidate>
+          <!-- First Name and Last Name -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" required />
+              <span class="error-message"></span>
             </div>
-
-            <form id="reservationForm" novalidate>
-                <!-- Full Name -->
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <div class="name-group">
-                        <div class="input-wrapper">
-                            <input type="text" id="firstName" name="firstName" placeholder="" required>
-                            <span class="input-label">First Name</span>
-                            <span class="error-message"></span>
-                        </div>
-                        <div class="input-wrapper">
-                            <input type="text" id="lastName" name="lastName" placeholder="" required>
-                            <span class="input-label">Last Name</span>
-                            <span class="error-message"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- E-mail and Phone Number -->
-                <div class="form-group">
-                    <div class="input-row">
-                        <div class="input-wrapper">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" placeholder="ex: myname@example.com" required>
-                            <span class="input-helper">example@example.com</span>
-                            <span class="error-message"></span>
-                        </div>
-                        <div class="input-wrapper">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" placeholder="(000) 000-0000" required>
-                            <span class="error-message"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Visit Date -->
-                <div class="form-group">
-                    <label for="visitDate">When are you planning to visit?</label>
-                    <div class="input-wrapper">
-                        <input type="date" id="visitDate" name="visitDate" required>
-                        <span class="error-message"></span>
-                    </div>
-                </div>
-
-                <!-- Group Size -->
-                <div class="form-group">
-                    <label for="groupSize">How many people are in your group?</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="groupSize" name="groupSize" min="1" placeholder="1" required>
-                        <span class="error-message"></span>
-                    </div>
-                </div>
-
-                <!-- Tours Interest -->
-                <div class="form-group">
-                    <label>Which tours or events are you most interested in?</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="tours" value="revolution">
-                            <span>Revolution was just the beginning</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="tours" value="transcendentalism">
-                            <span>Transcendentalism</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="tours" value="custom">
-                            <span>Custom</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="tours" value="ghosts">
-                            <span>Ghosts in the Gloaming</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="tours" value="gateposts">
-                            <span>Gateposts, Grapes & Graveyards</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="tours" value="tavern">
-                            <span>Tavern Life</span>
-                        </label>
-                    </div>
-                    <span class="error-message"></span>
-                </div>
-
-                <!-- Contact Method -->
-                <div class="form-group">
-                    <label>What is the best way to contact you?</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="contact" value="phone" id="contactPhone">
-                            <span>Phone</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="contact" value="email">
-                            <span>Email</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="contact" value="either">
-                            <span>Either</span>
-                        </label>
-                    </div>
-                    <span class="error-message"></span>
-                </div>
-
-                <!-- Call Back Time -->
-                <div class="form-group" id="callbackGroup" style="display: none;">
-                    <label>If phone, when is the best time of day for a call-back?</label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="callbackTime" value="8-11am">
-                            <span>8-11 am</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="callbackTime" value="12-4pm">
-                            <span>12-4 pm</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="callbackTime" value="6-10pm">
-                            <span>6-10pm</span>
-                        </label>
-                    </div>
-                    <span class="error-message"></span>
-                </div>
-
-                <!-- Additional Information -->
-                <div class="form-group">
-                    <label for="additionalInfo">Anything else we should know?</label>
-                    <div class="input-wrapper">
-                        <textarea id="additionalInfo" name="additionalInfo" rows="4" placeholder="Type here..."></textarea>
-                        <span class="error-message"></span>
-                    </div>
-                </div>
-
-                <!-- How did you hear about us -->
-                <div class="form-group">
-                    <label for="referralSource">And last, how did you hear about us?</label>
-                    <div class="input-wrapper">
-                        <textarea id="referralSource" name="referralSource" rows="4" placeholder="Type here..."></textarea>
-                        <span class="error-message"></span>
-                    </div>
-                </div>
-
-                <!-- Next Button -->
-                <div class="form-actions">
-                    <button type="button" class="btn btn-next" id="nextBtn">Next</button>
-                </div>
-            </form>
-
-            <div class="page-indicator">
-                <span class="add-page">⊕ Add New Page</span>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" required />
+              <span class="error-message"></span>
             </div>
+          </div>
+
+          <!-- E-mail and WhatsApp -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" required />
+              <span class="error-message"></span>
+            </div>
+            <div class="form-group">
+              <label for="whatsapp">telephone number whatsapp</label>
+              <input type="tel" id="whatsapp" name="whatsapp" required />
+              <span class="error-message"></span>
+            </div>
+          </div>
+
+          <!-- Call phone and City -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="callPhone">Call phone</label>
+              <input type="tel" id="callPhone" name="callPhone" required />
+              <span class="error-message"></span>
+            </div>
+            <div class="form-group">
+              <label for="city">First Name</label>
+              <input type="text" id="city" name="city" required />
+              <span class="error-message"></span>
+            </div>
+          </div>
+
+          <!-- Your address -->
+          <div class="form-group full-width">
+            <label for="address">Your address</label>
+            <input type="text" id="address" name="address" required />
+            <span class="error-message"></span>
+          </div>
+
+          <!-- Another field -->
+          <div class="form-group full-width">
+            <label for="extraField">First Name</label>
+            <input type="text" id="extraField" name="extraField" />
+            <span class="error-message"></span>
+          </div>
+
+          <!-- Stat and Zip code -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="state">Stat</label>
+              <input type="text" id="state" name="state" required />
+              <span class="error-message"></span>
+            </div>
+            <div class="form-group">
+              <label for="zipCode">Zip code</label>
+              <input type="text" id="zipCode" name="zipCode" required />
+              <span class="error-message"></span>
+            </div>
+          </div>
+
+          <!-- Divider Line -->
+          <div class="divider"></div>
+
+          <!-- Contact Method -->
+          <div class="form-group full-width">
+            <label class="main-label"
+              >What is the best way to contact you?</label
+            >
+            <div class="checkbox-row">
+              <label class="checkbox-label">
+                <input type="checkbox" name="contactMethod" value="phone" />
+                <span>Phone</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="contactMethod" value="whatsapp" />
+                <span>WhatsApp</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="contactMethod" value="email" />
+                <span>Email</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="contactMethod" value="either" />
+                <span>Either</span>
+              </label>
+            </div>
+            <span class="error-message"></span>
+          </div>
+
+          <!-- Next Button -->
+          <div class="form-actions">
+            <button type="button" class="btn btn-next" id="nextBtn">
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Page 2 -->
+      <div class="form-page" id="page2">
+        <!-- Summary Display -->
+        <div class="summary-container" id="summaryContainer">
+          <h2>Your Information</h2>
+          <div id="summaryContent"></div>
         </div>
 
-        <!-- Page 2 -->
-        <div class="form-page" id="page2">
-            <div class="page-indicator-top">
-                <span>Page 2</span>
-                <span class="page-number">⊞</span>
-            </div>
-
-            <div class="drag-area">
-                <div class="drag-icon">⊕</div>
-                <p>Drag your question to second page from the left panel.</p>
-            </div>
-
-            <!-- Summary Display -->
-            <div class="summary-container" id="summaryContainer" style="display: none;">
-                <h2>Your Reservation Details</h2>
-                <div id="summaryContent"></div>
-            </div>
-
-            <!-- Form Actions -->
-            <div class="form-actions">
-                <button type="button" class="btn btn-back" id="backBtn">Back</button>
-                <button type="button" class="btn btn-submit" id="submitBtn">Submit</button>
-            </div>
-
-            <div class="page-indicator">
-                <span class="add-page">⊕ Add New Page</span>
-            </div>
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <button type="button" class="btn btn-back" id="backBtn">Back</button>
+          <button type="button" class="btn btn-submit" id="submitBtn">
+            Submit
+          </button>
         </div>
+      </div>
 
-        <!-- Success Message -->
-        <div class="success-modal" id="successModal">
-            <div class="modal-content">
-                <div class="success-icon">✓</div>
-                <h2>Reservation Submitted Successfully!</h2>
-                <p>Thank you for your reservation. We will contact you soon to confirm your tour details.</p>
-                <button type="button" class="btn btn-close" id="closeModal">Close</button>
-            </div>
+      <!-- Success Message -->
+      <div class="success-modal" id="successModal">
+        <div class="modal-content">
+          <div class="success-icon">✓</div>
+          <h2>Form Submitted Successfully!</h2>
+          <p>Thank you for your submission. We will contact you soon.</p>
+          <button type="button" class="btn btn-close" id="closeModal">
+            Close
+          </button>
         </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
