@@ -142,23 +142,6 @@ document.querySelectorAll(".service-card").forEach((card) => {
   });
 });
 
-// Contact Us Button
-const contactBtn = document.querySelector(".btn-contact");
-if (contactBtn) {
-  contactBtn.addEventListener("click", () => {
-    const contactConfirm = confirm(
-      "Would you like to speak with one of our luxury travel specialists?\\n\\nClick OK to proceed to contact form.",
-    );
-
-    if (contactConfirm) {
-      alert(
-        "Thank you for your interest!\\n\\nOur team will contact you within 24 hours.\\n\\nEmail: michelmunezero@gmail.com\\nPhone: + (250) 780-197-780",
-      );
-      // In a real application, this would open a contact form or redirect to contact page
-    }
-  });
-}
-
 // Blog Section - Scroll Animation for Blog Cards
 document.querySelectorAll(".blog-card").forEach((card) => {
   card.style.opacity = "0";
