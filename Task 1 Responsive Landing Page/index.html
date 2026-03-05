@@ -15,13 +15,13 @@
     <header class="header">
       <nav class="navbar">
         <div class="container">
-          <div class="logo">
+          <a href="#home" class="logo">
             <img
               src="Photo/Logo.png"
               alt="Elite Travel Experiences"
               class="logo-img"
             />
-          </div>
+          </a>
           <ul class="nav-menu">
             <li><a href="#home" class="nav-link">Home</a></li>
             <li><a href="#tours" class="nav-link">Tours</a></li>
@@ -1569,6 +1569,115 @@
         </div>
       </div>
     </footer>
+
+    <!-- AI Assistant Button & Chat Widget -->
+    <div class="ai-assistant">
+      <button class="ai-assistant-btn" aria-label="Open AI Assistant">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M12 2L2 7L12 12L22 7L12 2Z"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M2 17L12 22L22 17"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M2 12L12 17L22 12"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+
+      <div class="ai-chat-widget">
+        <div class="ai-chat-header">
+          <div class="ai-chat-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 2L2 7L12 12L22 7L12 2Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M2 17L12 22L22 17"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M2 12L12 17L22 12"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span>AI Travel Assistant</span>
+          </div>
+          <button class="ai-chat-close" aria-label="Close chat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M18 6L6 18M6 6L18 18"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="ai-chat-body">
+          <div class="ai-chat-message ai-message">
+            <div class="message-avatar">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 2L2 7L12 12L22 7L12 2Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="message-content">
+              <p>
+                Hello! 👋 I'm your AI travel assistant. How can I help you plan
+                your perfect journey today?
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="ai-chat-footer">
+          <input
+            type="text"
+            class="ai-chat-input"
+            placeholder="Type your message..."
+          />
+          <button class="ai-chat-send" aria-label="Send message">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>

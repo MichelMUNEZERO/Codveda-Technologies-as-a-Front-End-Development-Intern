@@ -197,3 +197,125 @@ if (contactForm) {
     // In a real application, this would send the data to a server
   });
 }
+
+// AI Assistant Chat Widget
+const aiAssistantBtn = document.querySelector(".ai-assistant-btn");
+const aiChatWidget = document.querySelector(".ai-chat-widget");
+const aiChatClose = document.querySelector(".ai-chat-close");
+const aiChatInput = document.querySelector(".ai-chat-input");
+const aiChatSend = document.querySelector(".ai-chat-send");
+const aiChatBody = document.querySelector(".ai-chat-body");
+
+// Toggle chat widget
+if (aiAssistantBtn && aiChatWidget) {
+  aiAssistantBtn.addEventListener("click", () => {
+    aiChatWidget.classList.toggle("active");
+    if (aiChatWidget.classList.contains("active")) {
+      aiChatInput.focus();
+    }
+  });
+}
+
+// Close chat widget
+if (aiChatClose) {
+  aiChatClose.addEventListener("click", () => {
+    aiChatWidget.classList.remove("active");
+  });
+}
+
+// Send message function
+function sendAIMessage() {
+  const message = aiChatInput.value.trim();
+  if (message) {
+    // Add user message
+    addChatMessage(message, "user");
+    aiChatInput.value = "";
+
+    // Simulate AI response after a short delay
+    setTimeout(() => {
+      const response = getAIResponse(message);
+      addChatMessage(response, "ai");
+    }, 1000);
+  }
+}
+
+// Add message to chat
+function addChatMessage(text, sender) {
+  const messageDiv = document.createElement("div");
+  messageDiv.className = `ai-chat-message ${sender === "user" ? "user-message" : "ai-message"}`;
+
+  const avatar = document.createElement("div");
+  avatar.className = "message-avatar";
+
+  if (sender === "ai") {
+    avatar.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    `;
+  } else {
+    avatar.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+        <path d="M4 20C4 16.6863 6.68629 14 10 14H14C17.3137 14 20 16.6863 20 20" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    `;
+  }
+
+  const content = document.createElement("div");
+  content.className = "message-content";
+  const p = document.createElement("p");
+  p.textContent = text;
+  content.appendChild(p);
+
+  messageDiv.appendChild(avatar);
+  messageDiv.appendChild(content);
+  aiChatBody.appendChild(messageDiv);
+
+  // Scroll to bottom
+  aiChatBody.scrollTop = aiChatBody.scrollHeight;
+}
+
+// Simple AI response logic
+function getAIResponse(message) {
+  const lowerMessage = message.toLowerCase();
+
+  if (lowerMessage.includes("hello") || lowerMessage.includes("hi")) {
+    return "Hello! How can I help you plan your next adventure?";
+  } else if (
+    lowerMessage.includes("destination") ||
+    lowerMessage.includes("where")
+  ) {
+    return "We offer amazing destinations like Maldives, Tokyo, Paris, Dubai, and Santorini! Which one interests you?";
+  } else if (lowerMessage.includes("price") || lowerMessage.includes("cost")) {
+    return "Our packages start from $899 per person. Would you like details about a specific tour?";
+  } else if (
+    lowerMessage.includes("book") ||
+    lowerMessage.includes("reserve")
+  ) {
+    return "Great! You can book by scrolling to our contact section or calling us at +250 780-197-780. When would you like to travel?";
+  } else if (
+    lowerMessage.includes("contact") ||
+    lowerMessage.includes("email")
+  ) {
+    return "You can reach us at michelmunezero@gmail.com or call +250 780-197-780. We're here to help!";
+  } else if (lowerMessage.includes("thank")) {
+    return "You're welcome! Have a wonderful day and happy travels! ✈️";
+  } else {
+    return "I'd be happy to help you with that! For personalized assistance, please scroll to our contact section or email us at michelmunezero@gmail.com.";
+  }
+}
+
+// Send message on button click
+if (aiChatSend) {
+  aiChatSend.addEventListener("click", sendAIMessage);
+}
+
+// Send message on Enter key
+if (aiChatInput) {
+  aiChatInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      sendAIMessage();
+    }
+  });
+}
