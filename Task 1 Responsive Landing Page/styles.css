@@ -145,6 +145,7 @@ body {
   font-weight: 500;
   cursor: pointer;
   transition: var(--transition);
+  text-decoration: none;
 }
 
 .btn-message:hover {
