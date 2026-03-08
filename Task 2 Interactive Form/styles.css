@@ -304,6 +304,36 @@ textarea {
   color: #ffffff;
 }
 
+/* Checkbox Group Vertical */
+.checkbox-group-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* Tour Page Layout */
+.form-title {
+  font-size: 24px;
+  color: #ffffff;
+  margin-bottom: 25px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tour-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.tour-left,
+.tour-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 /* Radio Group */
 .radio-group {
   display: flex;
@@ -663,6 +693,14 @@ textarea {
   .modal-content {
     margin: 20px;
     padding: 30px;
+  }
+
+  .tour-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .checkbox-row {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

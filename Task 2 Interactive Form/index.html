@@ -126,8 +126,115 @@
         </form>
       </div>
 
-      <!-- Page 2 -->
+      <!-- Page 2: About Tours -->
       <div class="form-page" id="page2">
+        <form id="tourForm" novalidate>
+          <h2 class="form-title">About Tours</h2>
+
+          <div class="tour-layout">
+            <!-- Left Column -->
+            <div class="tour-left">
+              <!-- When are you planning to visit -->
+              <div class="form-group">
+                <label for="visitDate">When are you planning to visit?</label>
+                <input type="date" id="visitDate" name="visitDate" required />
+                <span class="error-message"></span>
+              </div>
+
+              <!-- How many people -->
+              <div class="form-group">
+                <label for="groupSize"
+                  >How many people are in your group?</label
+                >
+                <input
+                  type="number"
+                  id="groupSize"
+                  name="groupSize"
+                  min="1"
+                  required
+                />
+                <span class="error-message"></span>
+              </div>
+
+              <!-- Which tours or events -->
+              <div class="form-group full-width">
+                <label class="main-label"
+                  >Which tours or events are you most interested in?</label
+                >
+                <div class="checkbox-group-vertical">
+                  <label class="checkbox-label">
+                    <input
+                      type="checkbox"
+                      name="tourInterest"
+                      value="revolution"
+                    />
+                    <span>Revolution was just the beginning</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input
+                      type="checkbox"
+                      name="tourInterest"
+                      value="transcendentalism"
+                    />
+                    <span>Transcendentalism</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="tourInterest" value="custom" />
+                    <span>Custom</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="tourInterest" value="ghosts" />
+                    <span>Ghosts in the Gloaming</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="tourInterest" value="tavern" />
+                    <span>Tavern Life</span>
+                  </label>
+                </div>
+                <span class="error-message"></span>
+              </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="tour-right">
+              <!-- Anything else -->
+              <div class="form-group">
+                <label for="additionalInfo"
+                  >Anything else we should know?</label
+                >
+                <textarea
+                  id="additionalInfo"
+                  name="additionalInfo"
+                  rows="6"
+                ></textarea>
+                <span class="error-message"></span>
+              </div>
+
+              <!-- How did you hear about us -->
+              <div class="form-group">
+                <label for="hearAbout"
+                  >And last How did you hear about us?</label
+                >
+                <textarea id="hearAbout" name="hearAbout" rows="6"></textarea>
+                <span class="error-message"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Actions -->
+          <div class="form-actions">
+            <button type="button" class="btn btn-back" id="backBtn1">
+              Back
+            </button>
+            <button type="button" class="btn btn-next" id="nextBtn2">
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Page 3: Summary -->
+      <div class="form-page" id="page3">
         <!-- Summary Display -->
         <div class="summary-container" id="summaryContainer">
           <h2>Your Information</h2>
@@ -136,7 +243,7 @@
 
         <!-- Form Actions -->
         <div class="form-actions">
-          <button type="button" class="btn btn-back" id="backBtn">Back</button>
+          <button type="button" class="btn btn-back" id="backBtn2">Back</button>
           <button type="button" class="btn btn-submit" id="submitBtn">
             Submit
           </button>

@@ -2,10 +2,14 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Get form elements
   const form = document.getElementById("contactForm");
+  const tourForm = document.getElementById("tourForm");
   const page1 = document.getElementById("page1");
   const page2 = document.getElementById("page2");
+  const page3 = document.getElementById("page3");
   const nextBtn = document.getElementById("nextBtn");
-  const backBtn = document.getElementById("backBtn");
+  const backBtn1 = document.getElementById("backBtn1");
+  const nextBtn2 = document.getElementById("nextBtn2");
+  const backBtn2 = document.getElementById("backBtn2");
   const submitBtn = document.getElementById("submitBtn");
   const successModal = document.getElementById("successModal");
   const closeModal = document.getElementById("closeModal");
@@ -96,6 +100,19 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!value.trim()) return "Zip code is required";
       },
     },
+    visitDate: {
+      validate: (value) => {
+        if (!value.trim()) return "Visit date is required";
+        return "";
+      },
+    },
+    groupSize: {
+      validate: (value) => {
+        if (!value.trim()) return "Group size is required";
+        if (parseInt(value) < 1) return "Group size must be at least 1";
+        return "";
+      },
+    },
   };
 
   // Initialize form
@@ -109,8 +126,10 @@ document.addEventListener("DOMContentLoaded", function () {
     addPhoneFormatters();
 
     // Navigation button listeners
-    nextBtn.addEventListener("click", handleNext);
-    backBtn.addEventListener("click", handleBack);
+    nextBtn.addEventListener("click", handleNextPage1);
+    backBtn1.addEventListener("click", handleBackPage2);
+    nextBtn2.addEventListener("click", handleNextPage2);
+    backBtn2.addEventListener("click", handleBackPage3);
     submitBtn.addEventListener("click", handleSubmit);
     closeModal.addEventListener("click", closeSuccessModal);
   }
@@ -128,6 +147,8 @@ document.addEventListener("DOMContentLoaded", function () {
       "extraField",
       "state",
       "zipCode",
+      "visitDate",
+      "groupSize",
     ];
 
     textInputs.forEach((inputId) => {
@@ -262,6 +283,38 @@ document.addEventListener("DOMContentLoaded", function () {
     return isValid;
   }
 
+  function validateTourFields() {
+    let isValid = true;
+
+    // Validate tour form inputs
+    const requiredTourInputs = ["visitDate", "groupSize"];
+    requiredTourInputs.forEach((inputId) => {
+      const input = document.getElementById(inputId);
+      if (input && !validateField(input)) {
+        isValid = false;
+      }
+    });
+
+    // Validate at least one tour interest selected
+    const tourChecked = document.querySelectorAll(
+      'input[name="tourInterest"]:checked',
+    ).length;
+    const tourGroup = document
+      .querySelector('input[name="tourInterest"]')
+      .closest(".form-group");
+    const tourError = tourGroup.querySelector(".error-message");
+
+    if (tourChecked === 0) {
+      tourError.textContent = "Please select at least one tour or event";
+      tourError.classList.add("show");
+      isValid = false;
+    } else {
+      tourError.classList.remove("show");
+    }
+
+    return isValid;
+  }
+
   function collectFormData() {
     formData = {
       firstName: document.getElementById("firstName").value,
@@ -278,6 +331,17 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll('input[name="contactMethod"]:checked'),
       ).map((cb) => cb.nextElementSibling.textContent),
     };
+  }
+
+  function collectTourData() {
+    formData.visitDate = document.getElementById("visitDate").value;
+    formData.groupSize = document.getElementById("groupSize").value;
+    formData.tourInterests = Array.from(
+      document.querySelectorAll('input[name="tourInterest"]:checked'),
+    ).map((cb) => cb.nextElementSibling.textContent);
+    formData.additionalInfo =
+      document.getElementById("additionalInfo")?.value || "N/A";
+    formData.hearAbout = document.getElementById("hearAbout")?.value || "N/A";
   }
 
   function displaySummary() {
@@ -320,13 +384,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="summary-label">Contact Methods</div>
                 <div class="summary-value">${formData.contactMethods.join(", ")}</div>
             </div>
+            <div class="summary-item">
+                <div class="summary-label">Visit Date</div>
+                <div class="summary-value">${formData.visitDate || "N/A"}</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Group Size</div>
+                <div class="summary-value">${formData.groupSize || "N/A"}</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Tour Interests</div>
+                <div class="summary-value">${formData.tourInterests ? formData.tourInterests.join(", ") : "N/A"}</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Additional Info</div>
+                <div class="summary-value">${formData.additionalInfo}</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">How did you hear about us</div>
+                <div class="summary-value">${formData.hearAbout}</div>
+            </div>
         `;
   }
 
-  function handleNext() {
+  function handleNextPage1() {
     if (validateRequiredFields()) {
       collectFormData();
-      displaySummary();
 
       // Update progress dots
       progressDots[0].classList.remove("active");
@@ -349,7 +432,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function handleBack() {
+  function handleBackPage2() {
     // Update progress dots
     progressDots[1].classList.remove("active");
     progressDots[0].classList.remove("completed");
@@ -357,6 +440,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
     page2.classList.remove("active");
     page1.classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function handleNextPage2() {
+    if (validateTourFields()) {
+      collectTourData();
+      displaySummary();
+
+      // Update progress dots
+      progressDots[1].classList.remove("active");
+      progressDots[1].classList.add("completed");
+      progressDots[2].classList.add("active");
+
+      // Switch pages
+      page2.classList.remove("active");
+      page3.classList.add("active");
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // Scroll to first error
+      const firstError = document.querySelector(".error");
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+        firstError.focus();
+      }
+    }
+  }
+
+  function handleBackPage3() {
+    // Update progress dots
+    progressDots[2].classList.remove("active");
+    progressDots[1].classList.remove("completed");
+    progressDots[1].classList.add("active");
+
+    page3.classList.remove("active");
+    page2.classList.add("active");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -371,9 +491,8 @@ document.addEventListener("DOMContentLoaded", function () {
       submitBtn.disabled = false;
 
       // Update progress dots
-      progressDots[1].classList.remove("active");
-      progressDots[1].classList.add("completed");
-      progressDots[2].classList.add("active");
+      progressDots[2].classList.remove("active");
+      progressDots[2].classList.add("completed");
 
       // Show success modal
       successModal.classList.add("show");
@@ -389,7 +508,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Reset form and return to page 1
     setTimeout(() => {
       form.reset();
+      if (tourForm) tourForm.reset();
       page2.classList.remove("active");
+      page3.classList.remove("active");
       page1.classList.add("active");
 
       // Reset validation classes
@@ -421,4 +542,12 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
     }
   });
+
+  if (tourForm) {
+    tourForm.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+      }
+    });
+  }
 });
