@@ -5,7 +5,8 @@
 }
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: url("/photo/pixels.jpg") no-repeat center center fixed;
+  background: url("Photo/pexels.jpg") no-repeat center center fixed;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,19 +14,20 @@ body {
 }
 .container {
   width: 600px;
-  height: 100vh;
+  max-width: 90%;
   background: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  justify-self: center;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  display: flex;
 }
-.control {
+.controls {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  gap: 30px;
+  align-items: center;
+  margin-top: 30px;
 }
 .increment-btn {
   padding: 10px 20px;
@@ -34,6 +36,11 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+.increment-btn:hover {
+  background-color: #0056b3;
 }
 .decrement-btn {
   padding: 10px 20px;
@@ -42,11 +49,18 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+.decrement-btn:hover {
+  background-color: #a71d2a;
 }
 .counter {
-  font-size: 2rem;
+  font-size: 3rem;
+  font-weight: bold;
   text-align: center;
-  margin-bottom: 20px;
+  min-width: 80px;
+  color: #333;
 }
 h1 {
   font-size: 30px;
