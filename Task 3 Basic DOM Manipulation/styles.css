@@ -5,19 +5,22 @@
 }
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #f0f0f0;
+  background: url("/photo/pixels.jpg") no-repeat center center fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 .container {
+  width: 600px;
   height: 100vh;
-  background-color: #fff;
+  background: #fff;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  justify-self: center;
+  align-items: center;
+  display: flex;
 }
 .control {
   display: flex;
