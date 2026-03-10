@@ -97,7 +97,42 @@ header {
   justify-content: center;
   flex-direction: column;
   margin: auto;
+  transform: scale(0);
+  height: 0;
+  transition:
+    transform 0.5s ease,
+    height 0.5s ease;
+  overflow: hidden;
 }
+
+.wrapper.active-popup {
+  transform: scale(1);
+}
+.wrapper.active {
+  height: 500px;
+}
+.wrapper .form-box.login {
+  /* display: none; */
+  transition: transform 0.18s ease;
+  transform: translateX(0);
+}
+.wrapper.active .form-box.login {
+  transition: none;
+  transform: translateX(-400px);
+  /* display: none; */
+}
+
+.wrapper .form-box.register {
+  position: absolute;
+  transition: none;
+  transform: translateX(400px);
+}
+
+.wrapper.active .form-box.register {
+  transition: transform 0.18s ease;
+  transform: translateX(0);
+}
+
 .wrapper .icon-close {
   position: absolute;
   top: 10px;
