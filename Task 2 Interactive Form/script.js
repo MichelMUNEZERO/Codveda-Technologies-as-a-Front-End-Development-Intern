@@ -1,8 +1,8 @@
 const wrapper = document.querySelector(".wrapper");
-const loginLink = wrapper.querySelector(".login-link");
-const registerLink = wrapper.querySelector(".register-link");
-const btnPopup = wrapper.querySelector(".btnLogin-popup");
-const iconClose = wrapper.querySelector(".icon-close");
+const loginLink = document.querySelector(".login-link");
+const registerLink = document.querySelector(".register-link");
+const btnPopup = document.querySelector(".btnLogin-popup");
+const iconClose = document.querySelector(".icon-close");
 
 registerLink.addEventListener("click", () => {
   wrapper.classList.add("active");

@@ -107,9 +107,10 @@ header {
 
 .wrapper.active-popup {
   transform: scale(1);
+  height: 520px;
 }
 .wrapper.active {
-  height: 500px;
+  height: 650px;
 }
 .wrapper .form-box.login {
   /* display: none; */
