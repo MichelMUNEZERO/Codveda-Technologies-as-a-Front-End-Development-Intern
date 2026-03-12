@@ -303,6 +303,10 @@ body {
   z-index: 2;
   margin-top: calc(8rem);
   animation: fadeInUp 1s ease 0.8s both;
+  background: var(--bg-dark);
+  backdrop-filter: blur(15px);
+  border-radius: 12px;
+  padding: 1.5rem;
 }
 
 .search-form {
@@ -370,7 +374,11 @@ body {
    TOURS SECTION (Mobile-First)
    =================================== */
 .tours {
-  background: var(--gradient-dark-1);
+  z-index: 1000;
+  padding: 1rem 0;
+  background: rgb(0, 0, 0);
+  backdrop-filter: blur(10px);
+
   padding: 3rem 1rem;
   min-height: 100vh;
 }
@@ -608,7 +616,8 @@ body {
    SERVICE SECTION (Mobile-First)
    =================================== */
 .service {
-  background: var(--gradient-dark-1);
+  background: rgb(0, 0, 0);
+  backdrop-filter: blur(10px);
   padding: 3rem 1rem;
   min-height: 100vh;
 }
@@ -785,7 +794,8 @@ body {
    BLOG SECTION (Mobile-First)
    =================================== */
 .blog {
-  background: var(--gradient-dark-1);
+  background: rgb(0, 0, 0);
+  backdrop-filter: blur(10px);
   padding: 3rem 1rem;
   min-height: 100vh;
 }
@@ -957,24 +967,11 @@ body {
    =================================== */
 .contact {
   padding: 3rem 1rem;
-  background: var(--gradient-dark-1);
+  background: rgb(0, 0, 0);
+
+  backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
-}
-
-.contact::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle,
-    rgba(43, 154, 158, 0.1) 0%,
-    transparent 70%
-  );
-  animation: rotate 30s linear infinite;
 }
 
 .contact .container {
@@ -1018,7 +1015,7 @@ body {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(25, 255, 255, 0.1);
   transition: all 0.3s ease;
 }
 
@@ -1169,11 +1166,8 @@ body {
    FOOTER SECTION (Mobile-First)
    =================================== */
 .footer {
-  background: linear-gradient(
-    135deg,
-    var(--gradient-dark-1) 0%,
-    var(--gradient-dark-2) 100%
-  );
+  background: rgb(0, 0, 0);
+  backdrop-filter: blur(10px);
   padding: 3rem 1.5rem 1rem;
   color: var(--text-white);
   position: relative;
