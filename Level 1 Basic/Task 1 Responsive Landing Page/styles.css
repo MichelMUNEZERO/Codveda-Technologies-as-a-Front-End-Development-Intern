@@ -756,43 +756,55 @@ body {
 }
 
 .blog-card {
-  background: var(--bg-card);
+  position: relative;
+  height: 420px;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transition: all 0.4s ease;
   animation: fadeInUp 0.8s ease;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .blog-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-.blog-image {
-  position: relative;
-  height: 220px;
-  overflow: hidden;
-}
-
-.blog-image img {
+.blog-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+  transition: var(--transition);
+  z-index: 1;
 }
 
-.blog-card:hover .blog-image img {
-  transform: scale(1.1);
+.blog-card:hover .blog-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
 }
 
 .blog-category {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 1.5rem;
+  left: 1.5rem;
   background: var(--primary-color);
   color: var(--text-white);
-  padding: 0.4rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
@@ -802,7 +814,14 @@ body {
 }
 
 .blog-content {
-  padding: 1.25rem;
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  color: var(--text-white);
 }
 
 .blog-meta {
@@ -819,53 +838,57 @@ body {
   align-items: center;
   gap: 0.4rem;
   font-size: 0.85rem;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .blog-date svg,
 .blog-read-time svg {
-  color: var(--primary-color);
+  color: var(--text-white);
   flex-shrink: 0;
 }
 
 .blog-title {
   font-size: 1.4rem;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--text-white);
   margin-bottom: 1rem;
   line-height: 1.3;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   transition: color 0.3s ease;
 }
 
 .blog-card:hover .blog-title {
-  color: var(--primary-color);
+  color: var(--text-white);
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
 }
 
 .blog-excerpt {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.95);
   margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .btn-read-more {
-  display: inline-flex;
-  align-items: center;
   gap: 0.5rem;
-  background: transparent;
-  color: var(--primary-color);
-  border: 2px solid var(--primary-color);
-  padding: 0.7rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-white);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  padding: 0.7rem;
   border-radius: 25px;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
+  backdrop-filter: blur(5px);
 }
 
 .btn-read-more:hover {
-  background: var(--primary-color);
-  color: var(--text-white);
+  background: var(--text-white);
+  color: var(--primary-color);
+  border-color: var(--text-white);
 }
 
 .btn-read-more svg {
@@ -1506,7 +1529,13 @@ body {
 
   /* Blog Section - Tablet */
   .blog-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+  }
+
+  .blog-card {
+    height: 450px;
   }
 
   /* Footer Section - Tablet */
@@ -1607,12 +1636,14 @@ body {
   }
 
   .blog-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 2rem;
   }
 
-  .blog-image {
-    height: 240px;
+  .blog-card {
+    height: 480px;
   }
 
   .blog-content {
@@ -1688,7 +1719,13 @@ body {
   /* Blog Section - Large Desktop */
   .blog-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto 2rem;
+  }
+
+  .blog-card {
+    height: 500px;
   }
 
   /* Contact Section - Large Desktop */
