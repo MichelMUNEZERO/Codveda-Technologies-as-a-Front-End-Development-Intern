@@ -27,22 +27,31 @@ const Home = () => {
           </p>
 
           <div className="featured-grid">
-            <div className="featured-card">
-              <img src="/pexels-pixabay-415708.jpg" alt="Paris" />
+            <div
+              className="featured-card"
+              style={{ backgroundImage: "url(/pexels-pixabay-415708.jpg)" }}
+            >
+              <div className="card-overlay"></div>
               <div className="card-content">
                 <h3>Paris</h3>
                 <p>The City of Light awaits</p>
               </div>
             </div>
-            <div className="featured-card">
-              <img src="/pexels-pixabay-415980.jpg" alt="Tokyo" />
+            <div
+              className="featured-card"
+              style={{ backgroundImage: "url(/pexels-pixabay-415980.jpg)" }}
+            >
+              <div className="card-overlay"></div>
               <div className="card-content">
                 <h3>Tokyo</h3>
                 <p>Modern meets tradition</p>
               </div>
             </div>
-            <div className="featured-card">
-              <img src="/pexels-pixabay-236296.jpg" alt="Santorini" />
+            <div
+              className="featured-card"
+              style={{ backgroundImage: "url(/pexels-pixabay-236296.jpg)" }}
+            >
+              <div className="card-overlay"></div>
               <div className="card-content">
                 <h3>Santorini</h3>
                 <p>Greek island paradise</p>

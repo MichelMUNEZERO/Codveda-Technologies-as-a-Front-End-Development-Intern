@@ -44,21 +44,25 @@ const Destinations = () => {
     <div className="destinations-page">
       <div className="destinations-grid">
         {destinations.map((dest) => (
-          <div key={dest.id} className="destination-card">
-            <div className="destination-image">
-              <img src={dest.image} alt={dest.name} />
-              <div className="destination-overlay">
-                <button className="btn-book">Book Now</button>
+          <div
+            key={dest.id}
+            className="destination-card"
+            style={{ backgroundImage: `url(${dest.image})` }}
+          >
+            <div className="card-overlay"></div>
+            <div className="destination-content">
+              <div className="destination-header">
+                <h3>{dest.name}</h3>
+                <p className="destination-description">{dest.description}</p>
               </div>
-            </div>
-            <div className="destination-info">
-              <h3>{dest.name}</h3>
-              <p>{dest.description}</p>
-              <div className="destination-meta">
-                <span className="duration">
-                  <MdAccessTime /> {dest.duration}
-                </span>
-                <span className="price">{dest.price}</span>
+              <div className="destination-footer">
+                <div className="destination-meta">
+                  <span className="duration">
+                    <MdAccessTime /> {dest.duration}
+                  </span>
+                  <span className="price">{dest.price}</span>
+                </div>
+                <button className="btn-book">Book Now</button>
               </div>
             </div>
           </div>
