@@ -40,11 +40,6 @@ const Destinations = () => {
 
   return (
     <div className="destinations-page">
-      <div className="page-header">
-        <h1>Discover Your Next Adventure</h1>
-        <p>Handpicked destinations that create unforgettable memories</p>
-      </div>
-
       <div className="destinations-grid">
         {destinations.map((dest) => (
           <div key={dest.id} className="destination-card">

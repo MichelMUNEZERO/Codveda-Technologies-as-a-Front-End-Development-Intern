@@ -1,13 +1,6 @@
 const About = () => {
   return (
     <div className="about-page">
-      <div className="about-hero">
-        <div className="about-hero-content">
-          <h1>Elite Travel Experiences</h1>
-          <p className="tagline">Crafting Unforgettable Journeys Since 2010</p>
-        </div>
-      </div>
-
       <div className="container">
         <section className="about-story">
           <div className="story-content">
