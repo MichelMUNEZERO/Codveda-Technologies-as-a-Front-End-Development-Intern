@@ -387,6 +387,7 @@ body {
   position: relative;
   z-index: 2;
   color: var(--white);
+  margin-top: 11rem;
   padding: 1.5rem;
   height: 100%;
   display: flex;
