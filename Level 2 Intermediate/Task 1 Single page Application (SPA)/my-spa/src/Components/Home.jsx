@@ -1,3 +1,5 @@
+import { MdFlight, MdStar, MdSupportAgent } from "react-icons/md";
+
 const Home = () => {
   return (
     <div className="home-page">
@@ -56,17 +58,23 @@ const Home = () => {
           <h2 className="section-title">Why Travel With Us</h2>
           <div className="features-grid">
             <div className="feature-item">
-              <div className="feature-icon">✈️</div>
+              <div className="feature-icon">
+                <MdFlight />
+              </div>
               <h3>Expert Planning</h3>
               <p>Every detail carefully curated for your perfect journey</p>
             </div>
             <div className="feature-item">
-              <div className="feature-icon">🌟</div>
+              <div className="feature-icon">
+                <MdStar />
+              </div>
               <h3>Luxury Experiences</h3>
               <p>Premium accommodations and exclusive access</p>
             </div>
             <div className="feature-item">
-              <div className="feature-icon">💼</div>
+              <div className="feature-icon">
+                <MdSupportAgent />
+              </div>
               <h3>24/7 Support</h3>
               <p>We're here for you every step of the way</p>
             </div>

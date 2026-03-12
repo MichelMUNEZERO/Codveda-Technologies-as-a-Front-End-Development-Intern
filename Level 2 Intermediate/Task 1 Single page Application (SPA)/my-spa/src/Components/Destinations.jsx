@@ -1,3 +1,5 @@
+import { MdAccessTime } from "react-icons/md";
+
 const Destinations = () => {
   const destinations = [
     {
@@ -53,7 +55,9 @@ const Destinations = () => {
               <h3>{dest.name}</h3>
               <p>{dest.description}</p>
               <div className="destination-meta">
-                <span className="duration">🕐 {dest.duration}</span>
+                <span className="duration">
+                  <MdAccessTime /> {dest.duration}
+                </span>
                 <span className="price">{dest.price}</span>
               </div>
             </div>

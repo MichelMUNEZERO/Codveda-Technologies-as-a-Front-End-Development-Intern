@@ -1,4 +1,13 @@
 import { useState } from "react";
+import { MdEmail, MdPhone, MdLocationOn, MdAccessTime } from "react-icons/md";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaPinterest,
+} from "react-icons/fa";
+import { HiMail } from "react-icons/hi";
+import { IoSend } from "react-icons/io5";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -93,7 +102,9 @@ const Contact = () => {
 
               <div className="info-items">
                 <div className="info-item">
-                  <div className="info-icon">📧</div>
+                  <div className="info-icon">
+                    <MdEmail />
+                  </div>
                   <div className="info-details">
                     <strong>Email</strong>
                     <p>info@elitetravel.com</p>
@@ -101,7 +112,9 @@ const Contact = () => {
                 </div>
 
                 <div className="info-item">
-                  <div className="info-icon">📞</div>
+                  <div className="info-icon">
+                    <MdPhone />
+                  </div>
                   <div className="info-details">
                     <strong>Phone</strong>
                     <p>+1 (555) 123-4567</p>
@@ -109,7 +122,9 @@ const Contact = () => {
                 </div>
 
                 <div className="info-item">
-                  <div className="info-icon">📍</div>
+                  <div className="info-icon">
+                    <MdLocationOn />
+                  </div>
                   <div className="info-details">
                     <strong>Address</strong>
                     <p>123 Travel Lane, Wanderlust City, TC 12345</p>
@@ -117,7 +132,9 @@ const Contact = () => {
                 </div>
 
                 <div className="info-item">
-                  <div className="info-icon">🕐</div>
+                  <div className="info-icon">
+                    <MdAccessTime />
+                  </div>
                   <div className="info-details">
                     <strong>Business Hours</strong>
                     <p>
@@ -136,16 +153,16 @@ const Contact = () => {
                 <p>Join our community of adventurers</p>
                 <div className="social-icons">
                   <a href="#" className="social-icon" title="Facebook">
-                    📘 Facebook
+                    <FaFacebook /> Facebook
                   </a>
                   <a href="#" className="social-icon" title="Instagram">
-                    📷 Instagram
+                    <FaInstagram /> Instagram
                   </a>
                   <a href="#" className="social-icon" title="Twitter">
-                    🐦 Twitter
+                    <FaTwitter /> Twitter
                   </a>
                   <a href="#" className="social-icon" title="Pinterest">
-                    📌 Pinterest
+                    <FaPinterest /> Pinterest
                   </a>
                 </div>
               </div>
@@ -234,7 +251,13 @@ const Contact = () => {
                 className="btn-submit"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Sending..." : "Send Message 📨"}
+                {isSubmitting ? (
+                  "Sending..."
+                ) : (
+                  <>
+                    <IoSend /> Send Message
+                  </>
+                )}
               </button>
             </form>
           </div>
@@ -242,7 +265,9 @@ const Contact = () => {
 
         <div className="newsletter-section">
           <div className="newsletter-content">
-            <div className="newsletter-icon">✉️</div>
+            <div className="newsletter-icon">
+              <HiMail />
+            </div>
             <h2>Subscribe to Our Newsletter</h2>
             <p>
               Get exclusive travel tips, destination guides, and special deals
