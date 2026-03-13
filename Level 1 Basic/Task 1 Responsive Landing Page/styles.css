@@ -507,8 +507,8 @@ body {
 }
 
 .btn-book {
-  background: #f4a261;
-  color: var(--text-white);
+  background: var(--bg-card);
+  color: var(--secondary-color);
   border: none;
   padding: 1rem;
   border-radius: 12px;
@@ -521,9 +521,11 @@ body {
 }
 
 .btn-book:hover {
-  background: #e76f51;
+  background: transparent;
   transform: translateY(-2px);
-  box-shadow: 0 5px 20px rgba(244, 162, 97, 0.5);
+  box-shadow: 0 5px 20px rgba(29, 148, 142, 0.5);
+  border: 2px solid var(--secondary-color);
+  transform: translateX(5px);
 }
 
 .tours-cta {
