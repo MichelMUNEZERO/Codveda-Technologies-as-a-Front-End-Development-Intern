@@ -186,7 +186,7 @@ const Contact = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="John Doe"
+                  placeholder="Michael MUNEZEO"
                   className={formErrors.name ? "error" : ""}
                 />
                 {formErrors.name && (
@@ -204,7 +204,7 @@ const Contact = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="john@example.com"
+                  placeholder="michael@example.com"
                   className={formErrors.email ? "error" : ""}
                 />
                 {formErrors.email && (
