@@ -514,7 +514,7 @@ body {
 }
 
 .story-content p {
-  color: var(--text-light);
+  color: var(--white);
   margin-bottom: 1rem;
   font-size: 1.1rem;
   line-height: 1.8;
@@ -543,7 +543,7 @@ body {
 
 .mission-section p {
   font-size: 1.1rem;
-  color: var(--text-light);
+  color: var(--white);
   line-height: 1.8;
 }
 

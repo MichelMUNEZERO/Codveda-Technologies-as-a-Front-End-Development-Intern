@@ -99,14 +99,6 @@ function App() {
               grown into partnerships with thousands of happy travelers.
             </p>
 
-            <h4 className="footer-subheading">
-              Subscribe to our newsletter for travel tips &amp; exclusive deals
-            </h4>
-            <form className="footer-newsletter-form">
-              <input type="email" placeholder="Your email address" />
-              <button type="submit">Subscribe</button>
-            </form>
-
             <h4 className="footer-subheading footer-follow-heading">
               Follow Our Journey
             </h4>
