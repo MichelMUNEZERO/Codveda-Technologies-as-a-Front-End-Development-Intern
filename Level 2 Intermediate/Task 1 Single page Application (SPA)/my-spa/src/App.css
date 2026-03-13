@@ -1049,9 +1049,19 @@ body {
 =================== */
 .footer {
   background: #000000;
+  position: relative;
   color: var(--white);
   padding: 3rem 0 1rem;
   margin-top: auto;
+}
+
+.footer::before {
+  content: "";
+  display: block;
+  width: min(900px, 80%);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+  margin: 0 auto 2rem;
 }
 
 .footer-content {
