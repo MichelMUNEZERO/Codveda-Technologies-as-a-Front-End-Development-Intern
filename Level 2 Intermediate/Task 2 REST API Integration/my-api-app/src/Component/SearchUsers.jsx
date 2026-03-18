@@ -8,8 +8,8 @@ function SearchUsers() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [typeFilter, setTypeFilter] = useState("all");
-  const [sortBy, setSortBy] = useState("best-match");
+  const typeFilter = "all";
+  const sortBy = "best-match";
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
 
@@ -28,7 +28,7 @@ function SearchUsers() {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [query, typeFilter, sortBy]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [query]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Fire when the user explicitly changes the page
   useEffect(() => {
