@@ -36,6 +36,28 @@ export default function Header() {
           </button>
         </nav>
       </header>
+      <main>
+        <section
+          className="relative bg-cover bg-center h-screen"
+          style={{ backgroundImage: "url('/Photo/pexels-pixabay-415980.jpg')" }}
+        >
+          <div className=""></div>
+          <div className="container mx-auto py-20 text-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-4">
+                EXPLORE LUXURY TRAVEL LIKE NEVER BEFORE
+              </h2>
+              <p className="text-lg text-gray-700">
+                Where will your story take you? We turn travel dreams into
+                memories that last a lifetime
+              </p>
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Message
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
   );
 }
