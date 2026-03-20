@@ -8,6 +8,11 @@ export default function Header() {
         backgroundImage: "url('/Photo/pexels-pixabay-415980.jpg')",
       }}
     >
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/35 to-black/20"
+        aria-hidden="true"
+      />
+
       <header className="fixed left-1/2 top-4 z-50 w-[calc(100%-2rem)] max-w-[1820px] -translate-x-1/2 rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 shadow-[0_20px_45px_rgba(2,14,23,0.55)] backdrop-blur-sm">
         <nav className="container mx-auto flex items-center justify-between py-4">
           <a href="/" className="text-2xl font-bold">
@@ -38,23 +43,22 @@ export default function Header() {
           </button>
         </nav>
       </header>
-      <div className="container mx-auto py-20 text-center">
-        <div>
-          <h2 className="text-3xl font-bold mb-4">
+      <div className="relative z-10 container mx-auto px-6 pt-20 pb-24">
+        <div className="max-w-5xl space-y-8 text-left text-white">
+          <h2 className=" text font-bold uppercase leading-[1.05] tracking-wide md:text-5xl">
             EXPLORE LUXURY TRAVEL LIKE NEVER BEFORE
           </h2>
-          <p className="text-lg text-gray-700">
+          <p className="text-2xl text-gray-100 md:text-3xl">
             Where will your story take you? We turn travel dreams into memories
             that last a lifetime
           </p>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Message
+          <button className="inline-flex items-center gap-2 rounded-full border-2 border-white px-8 py-3 text-lg font-bold text-white transition hover:bg-white hover:text-[#0b1621] md:text-2xl">
+            Explore offerings
+            <span aria-hidden="true">&rarr;</span>
           </button>
         </div>
       </div>
-      <section>
-        <div className="absolute inset-0 bg-black/35" aria-hidden="true" />
-
+      <section className="relative z-10">
         <div className="relative mx-auto mt-20 max-w-[1820px] rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 p-4 shadow-[0_20px_45px_rgba(2,14,23,0.55)] md:p-6">
           <form className="grid gap-4 rounded-xl bg-[#02070d]/95 p-4 md:grid-cols-[1fr_1fr_1fr_1fr_150px] md:items-end md:p-5">
             <div className="space-y-2">
