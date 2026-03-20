@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <main
       className="relative min-h-screen bg-cover bg-center pt-44 sm:pt-40 md:pt-28"
@@ -14,33 +17,97 @@ export default function Header() {
       />
 
       <header className="fixed left-1/2 top-3 z-50 w-[calc(100%-1rem)] max-w-[1820px] -translate-x-1/2 rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 shadow-[0_20px_45px_rgba(2,14,23,0.55)] backdrop-blur-sm sm:top-4 sm:w-[calc(100%-2rem)]">
-        <nav className="container mx-auto flex flex-wrap items-center justify-between gap-3 px-3 py-3 sm:px-4 md:flex-nowrap md:gap-0 md:py-4">
-          <a href="/" className="text-2xl font-bold">
-            <img
-              src="/Photo/Logo.png"
-              alt="Logo"
-              className="h-10 w-10 inline-block mr-2 rounded-full"
-            />
-          </a>
+        <nav className="container relative mx-auto px-3 py-3 sm:px-4 md:py-4">
+          {/* Mobile Navbar (< md) */}
+          <div className="flex items-center justify-between gap-3 md:hidden">
+            <a href="/" className="text-2xl font-bold">
+              <img
+                src="/Photo/Logo.png"
+                alt="Logo"
+                className="h-10 w-10 inline-block mr-2 rounded-full"
+              />
+            </a>
 
-          <ul className="order-3 flex w-full items-center justify-center gap-6 text-sm text-gray-100 sm:gap-10 sm:text-base md:order-none md:w-auto md:gap-14">
-            <li className="font-medium transition-colors hover:text-cyan-300">
-              <a href="/">Home</a>
-            </li>
-            <li className="font-medium transition-colors hover:text-cyan-300">
-              <a href="/tour">Tour</a>
-            </li>
-            <li className="font-medium transition-colors hover:text-cyan-300">
-              <a href="/service">Service</a>
-            </li>
-            <li className="font-medium transition-colors hover:text-cyan-300">
-              <a href="/contact">Contact</a>
-            </li>
-          </ul>
+            <button
+              type="button"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-cyan-700/50 text-white transition hover:bg-cyan-900/30"
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              aria-label="Toggle menu"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-nav"
+            >
+              {isMenuOpen ? (
+                <FaTimes className="h-5 w-5" />
+              ) : (
+                <FaBars className="h-5 w-5" />
+              )}
+            </button>
+          </div>
 
-          <button className="rounded bg-blue-500 px-3 py-2 text-sm font-bold text-white transition hover:bg-blue-700 sm:px-4 md:text-base">
-            Message
-          </button>
+          {/* Mobile Menu Dropdown */}
+          {isMenuOpen && (
+            <div
+              id="mobile-nav"
+              className="mt-3 rounded-xl border border-cyan-900/60 bg-[#08111b]/95 p-4 md:hidden"
+            >
+              <ul className="flex flex-col gap-3 text-base text-gray-100">
+                <li className="font-medium transition-colors hover:text-cyan-300">
+                  <a href="/" onClick={() => setIsMenuOpen(false)}>
+                    Home
+                  </a>
+                </li>
+                <li className="font-medium transition-colors hover:text-cyan-300">
+                  <a href="/tour" onClick={() => setIsMenuOpen(false)}>
+                    Tour
+                  </a>
+                </li>
+                <li className="font-medium transition-colors hover:text-cyan-300">
+                  <a href="/service" onClick={() => setIsMenuOpen(false)}>
+                    Service
+                  </a>
+                </li>
+                <li className="font-medium transition-colors hover:text-cyan-300">
+                  <a href="/contact" onClick={() => setIsMenuOpen(false)}>
+                    Contact
+                  </a>
+                </li>
+              </ul>
+
+              <button className="mt-4 w-full rounded bg-blue-500 px-4 py-2 text-sm font-bold text-white transition hover:bg-blue-700">
+                Message
+              </button>
+            </div>
+          )}
+
+          {/* Desktop Navbar (>= md) */}
+          <div className="hidden items-center justify-between gap-0 md:flex">
+            <a href="/" className="text-2xl font-bold">
+              <img
+                src="/Photo/Logo.png"
+                alt="Logo"
+                className="h-10 w-10 inline-block mr-2 rounded-full"
+              />
+            </a>
+
+            <ul className="flex items-center justify-center gap-14 text-base text-gray-100">
+              <li className="font-medium transition-colors hover:text-cyan-300">
+                <a href="/">Home</a>
+              </li>
+              <li className="font-medium transition-colors hover:text-cyan-300">
+                <a href="/tour">Tour</a>
+              </li>
+              <li className="font-medium transition-colors hover:text-cyan-300">
+                <a href="/service">Service</a>
+              </li>
+              <li className="font-medium transition-colors hover:text-cyan-300">
+                <a href="/contact">Contact</a>
+              </li>
+            </ul>
+
+            <button className="rounded bg-blue-500 px-4 py-2 text-base font-bold text-white transition hover:bg-blue-700">
+              Message
+            </button>
+          </div>
         </nav>
       </header>
       <div className="relative z-10 container mx-auto px-4 pt-12 pb-20 sm:px-6 sm:pt-16 md:pt-20 md:pb-24">
