@@ -3,7 +3,7 @@ import React from "react";
 export default function Header() {
   return (
     <main
-      className="relative min-h-screen bg-cover bg-center pt-28"
+      className="relative min-h-screen bg-cover bg-center pt-44 sm:pt-40 md:pt-28"
       style={{
         backgroundImage: "url('/Photo/pexels-pixabay-415980.jpg')",
       }}
@@ -13,8 +13,8 @@ export default function Header() {
         aria-hidden="true"
       />
 
-      <header className="fixed left-1/2 top-4 z-50 w-[calc(100%-2rem)] max-w-[1820px] -translate-x-1/2 rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 shadow-[0_20px_45px_rgba(2,14,23,0.55)] backdrop-blur-sm">
-        <nav className="container mx-auto flex items-center justify-between py-4">
+      <header className="fixed left-1/2 top-3 z-50 w-[calc(100%-1rem)] max-w-[1820px] -translate-x-1/2 rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 shadow-[0_20px_45px_rgba(2,14,23,0.55)] backdrop-blur-sm sm:top-4 sm:w-[calc(100%-2rem)]">
+        <nav className="container mx-auto flex flex-wrap items-center justify-between gap-3 px-3 py-3 sm:px-4 md:flex-nowrap md:gap-0 md:py-4">
           <a href="/" className="text-2xl font-bold">
             <img
               src="/Photo/Logo.png"
@@ -23,7 +23,7 @@ export default function Header() {
             />
           </a>
 
-          <ul className="flex space-x-20 text-gray-100">
+          <ul className="order-3 flex w-full items-center justify-center gap-6 text-sm text-gray-100 sm:gap-10 sm:text-base md:order-none md:w-auto md:gap-14">
             <li className="font-medium transition-colors hover:text-cyan-300">
               <a href="/">Home</a>
             </li>
@@ -38,33 +38,33 @@ export default function Header() {
             </li>
           </ul>
 
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <button className="rounded bg-blue-500 px-3 py-2 text-sm font-bold text-white transition hover:bg-blue-700 sm:px-4 md:text-base">
             Message
           </button>
         </nav>
       </header>
-      <div className="relative z-10 container mx-auto px-6 pt-20 pb-24">
-        <div className="max-w-5xl space-y-8 text-left text-white">
-          <h2 className=" text font-bold uppercase leading-[1.05] tracking-wide md:text-5xl">
+      <div className="relative z-10 container mx-auto px-4 pt-12 pb-20 sm:px-6 sm:pt-16 md:pt-20 md:pb-24">
+        <div className="max-w-5xl space-y-6 text-left text-white sm:space-y-8">
+          <h2 className="text-4xl font-bold uppercase leading-[1.05] tracking-wide sm:text-5xl md:text-6xl lg:text-7xl">
             EXPLORE LUXURY TRAVEL LIKE NEVER BEFORE
           </h2>
-          <p className="text-2xl text-gray-100 md:text-3xl">
+          <p className="max-w-4xl text-lg text-gray-100 sm:text-2xl md:text-3xl">
             Where will your story take you? We turn travel dreams into memories
             that last a lifetime
           </p>
-          <button className="inline-flex items-center gap-2 rounded-full border-2 border-white px-8 py-3 text-lg font-bold text-white transition hover:bg-white hover:text-[#0b1621] md:text-2xl">
+          <button className="inline-flex items-center gap-2 rounded-full border-2 border-white px-6 py-2.5 text-base font-bold text-white transition hover:bg-white hover:text-[#0b1621] sm:px-8 sm:py-3 sm:text-lg md:text-2xl">
             Explore offerings
             <span aria-hidden="true">&rarr;</span>
           </button>
         </div>
       </div>
       <section className="relative z-10">
-        <div className="relative mx-auto mt-20 max-w-[1820px] rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 p-4 shadow-[0_20px_45px_rgba(2,14,23,0.55)] md:p-6">
+        <div className="relative mx-auto mt-10 max-w-[1820px] rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 p-3 shadow-[0_20px_45px_rgba(2,14,23,0.55)] sm:p-4 md:mt-20 md:p-6">
           <form className="grid gap-4 rounded-xl bg-[#02070d]/95 p-4 md:grid-cols-[1fr_1fr_1fr_1fr_150px] md:items-end md:p-5">
             <div className="space-y-2">
               <label
                 htmlFor="destination"
-                className="block text-2xl font-semibold text-gray-100"
+                className="block text-lg font-semibold text-gray-100 sm:text-xl md:text-2xl"
               >
                 Destination
               </label>
@@ -84,7 +84,7 @@ export default function Header() {
             <div className="space-y-2">
               <label
                 htmlFor="travel-style"
-                className="block text-2xl font-semibold text-gray-100"
+                className="block text-lg font-semibold text-gray-100 sm:text-xl md:text-2xl"
               >
                 Travel style
               </label>
@@ -104,7 +104,7 @@ export default function Header() {
             <div className="space-y-2">
               <label
                 htmlFor="dates"
-                className="block text-2xl font-semibold text-gray-100"
+                className="block text-lg font-semibold text-gray-100 sm:text-xl md:text-2xl"
               >
                 Dates
               </label>
@@ -124,7 +124,7 @@ export default function Header() {
             <div className="space-y-2">
               <label
                 htmlFor="travelers"
-                className="block text-2xl font-semibold text-gray-100"
+                className="block text-lg font-semibold text-gray-100 sm:text-xl md:text-2xl"
               >
                 Travelers
               </label>
@@ -145,7 +145,7 @@ export default function Header() {
 
             <button
               type="submit"
-              className="h-12 rounded-lg bg-gray-100 px-6 text-xl font-semibold text-[#0e2f4a] transition hover:bg-white"
+              className="h-12 w-full rounded-lg bg-gray-100 px-6 text-lg font-semibold text-[#0e2f4a] transition hover:bg-white md:w-auto md:text-xl"
             >
               Search
             </button>
@@ -154,7 +154,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="absolute bottom-8 right-8 flex h-16 w-16 items-center justify-center rounded-full bg-[#13a9b1] text-white shadow-[0_10px_24px_rgba(0,0,0,0.35)]"
+          className="absolute bottom-6 right-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#13a9b1] text-white shadow-[0_10px_24px_rgba(0,0,0,0.35)] sm:bottom-8 sm:right-8 sm:h-16 sm:w-16"
           aria-label="Layers"
         >
           <svg
