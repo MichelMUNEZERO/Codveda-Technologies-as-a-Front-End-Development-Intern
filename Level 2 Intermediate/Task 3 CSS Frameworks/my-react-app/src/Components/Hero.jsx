@@ -299,9 +299,11 @@ export default function Header() {
         </section>
       </main>
       <section className="bg-[#06111b] px-4 py-14 sm:px-6 md:py-16">
-        <div className="max-w-3xl">
-          <h2 className="text-3xl font-bold text-white">Destinations</h2>
-          <p className="mt-2 max-w-3xl text-lg text-gray-300">
+        <div className="mx-auto mb-8 max-w-3xl rounded-2xl border border-cyan-800/40 bg-[#0b1621]/70 p-6 text-center shadow-[0_14px_35px_rgba(2,14,23,0.4)] backdrop-blur-sm sm:mb-10 sm:p-8">
+          <h2 className="text-3xl font-bold uppercase tracking-wide text-white sm:text-4xl">
+            Destinations
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-lg leading-relaxed text-gray-300 sm:text-xl">
             Explore our amazing destinations and create unforgettable memories.
           </p>
         </div>
@@ -344,7 +346,7 @@ export default function Header() {
               </article>
             ))}
           </div>
-          <button className="mt-8 rounded-lg bg-[#13a9b1] px-6 py-3 text-lg font-semibold text-white transition hover:bg-[#0f8a8f]">
+          <button className="mx-auto mt-8 flex w-fit items-center justify-center rounded-xl bg-gradient-to-r from-[#13a9b1] to-[#0f8a8f] px-7 py-3 text-lg font-semibold text-white shadow-[0_10px_24px_rgba(8,106,112,0.35)] transition duration-300 hover:-translate-y-0.5 hover:from-[#16bcc5] hover:to-[#10a0a6] hover:shadow-[0_16px_28px_rgba(8,106,112,0.45)] focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-[#06111b]">
             View More ...
           </button>
         </div>
