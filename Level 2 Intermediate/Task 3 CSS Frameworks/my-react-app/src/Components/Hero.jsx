@@ -40,6 +40,24 @@ export default function Header() {
       nights: "4 nights",
       price: "From $899",
     },
+    {
+      title: "Desert Journey",
+      subtitle: "Golden Dunes",
+      description: "Explore stunning desert landscapes and luxury camps.",
+      details: "Best for sunset safaris and cultural desert experiences.",
+      days: "6 days",
+      nights: "5 nights",
+      price: "From $1,199",
+    },
+    {
+      title: "European Classics",
+      subtitle: "Historic Escapes",
+      description: "Visit iconic landmarks and charming old-world cities.",
+      details: "A perfect blend of history, art, and local cuisine.",
+      days: "9 days",
+      nights: "7 nights",
+      price: "From $1,799",
+    },
   ];
 
   return (
@@ -326,6 +344,9 @@ export default function Header() {
               </article>
             ))}
           </div>
+          <button className="mt-8 rounded-lg bg-[#13a9b1] px-6 py-3 text-lg font-semibold text-white transition hover:bg-[#0f8a8f]">
+            View More ...
+          </button>
         </div>
       </section>
     </div>
