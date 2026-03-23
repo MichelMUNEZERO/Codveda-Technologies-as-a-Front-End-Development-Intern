@@ -65,6 +65,28 @@ export default function Header() {
       price: "From $1,799",
     },
   ];
+  const serviceCards = [
+    {
+      title: "Flight Booking",
+      description:
+        "Get the best routes and fares with our partner airlines worldwide.",
+    },
+    {
+      title: "Hotel & Resort",
+      description:
+        "Stay in handpicked hotels and premium resorts for every budget.",
+    },
+    {
+      title: "Guided Tours",
+      description:
+        "Enjoy local experiences with expert guides and curated city tours.",
+    },
+    {
+      title: "Travel Support",
+      description:
+        "24/7 support for itinerary changes, visa help, and travel assistance.",
+    },
+  ];
 
   return (
     <div>
@@ -358,6 +380,36 @@ export default function Header() {
           <button className="mx-auto mt-8 flex w-fit items-center justify-center rounded-xl bg-gradient-to-r from-[#13a9b1] to-[#0f8a8f] px-7 py-3 text-lg font-semibold text-white shadow-[0_10px_24px_rgba(8,106,112,0.35)] transition duration-300 hover:-translate-y-0.5 hover:from-[#16bcd3] hover:to-[#10a0a6] hover:shadow-[0_16px_28px_rgba(8,106,112,0.45)] focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-[#06111b]">
             View More ...
           </button>
+        </div>
+      </section>
+
+      <section className="bg-[#04101a] px-4 py-14 sm:px-6 md:py-16">
+        <div className="mx-auto mb-8 max-w-3xl rounded-2xl border border-cyan-800/40 bg-[#0b1621]/70 p-6 text-center shadow-[0_14px_35px_rgba(2,14,23,0.4)] backdrop-blur-sm sm:mb-10 sm:p-8">
+          <h2 className="text-3xl font-bold uppercase tracking-wide text-white sm:text-4xl">
+            Services
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-lg leading-relaxed text-gray-300 sm:text-xl">
+            Everything you need for a smooth trip, from planning to arrival.
+          </p>
+        </div>
+
+        <div className="mx-auto max-w-[1820px]">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {serviceCards.map((service) => (
+              <article
+                key={service.title}
+                className="rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] transition duration-300 hover:-translate-y-1 hover:border-cyan-500/70 hover:shadow-[0_28px_55px_rgba(2,14,23,0.65)]"
+              >
+                <h3 className="text-2xl font-semibold text-white">
+                  {service.title}
+                </h3>
+                <p className="mt-3 text-gray-300">{service.description}</p>
+                <button className="mt-6 h-11 rounded-lg bg-gray-100 px-5 text-base font-semibold text-[#0e2f4a] shadow-[0_10px_24px_rgba(2,14,23,0.35)] transition duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_16px_30px_rgba(2,14,23,0.5)]">
+                  Learn More
+                </button>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </div>
