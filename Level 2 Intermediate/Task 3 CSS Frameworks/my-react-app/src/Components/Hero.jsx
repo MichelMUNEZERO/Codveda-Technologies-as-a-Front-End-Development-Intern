@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import {
+  FaBars,
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaTimes,
+  FaTwitter,
+} from "react-icons/fa";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -566,6 +573,64 @@ export default function Header() {
               Premium journeys crafted for explorers who want comfort,
               adventure, and unforgettable moments.
             </p>
+
+            <div className="pt-2">
+              <h4 className="text-xl font-semibold text-white">
+                Subscribe to our newsletter for travel tips &amp; exclusive
+                deals
+              </h4>
+
+              <form className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <input
+                  type="email"
+                  name="newsletter-email"
+                  placeholder="Your email address"
+                  className="h-12 w-full rounded-full border border-gray-600 bg-[#11161d] px-5 text-base text-gray-100 outline-none transition placeholder:text-gray-400 focus:border-cyan-500"
+                />
+                <button
+                  type="submit"
+                  className="h-12 rounded-full bg-[#2ab5c4] px-8 text-base font-semibold text-white transition hover:bg-[#1ca3b4]"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </div>
+
+            <div className="pt-3">
+              <h4 className="text-3xl font-bold text-white sm:text-4xl">
+                Follow Our Journey
+              </h4>
+              <div className="mt-4 flex items-center gap-4">
+                <a
+                  href="#"
+                  aria-label="Facebook"
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-xl text-gray-100 transition hover:bg-[#2ab5c4]"
+                >
+                  <FaFacebookF />
+                </a>
+                <a
+                  href="#"
+                  aria-label="Instagram"
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-xl text-gray-100 transition hover:bg-[#2ab5c4]"
+                >
+                  <FaInstagram />
+                </a>
+                <a
+                  href="#"
+                  aria-label="Twitter"
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-xl text-gray-100 transition hover:bg-[#2ab5c4]"
+                >
+                  <FaTwitter />
+                </a>
+                <a
+                  href="#"
+                  aria-label="LinkedIn"
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-xl text-gray-100 transition hover:bg-[#2ab5c4]"
+                >
+                  <FaLinkedinIn />
+                </a>
+              </div>
+            </div>
           </div>
 
           <div>
@@ -600,7 +665,7 @@ export default function Header() {
             <h4 className="text-lg font-semibold uppercase tracking-wide text-white">
               Stay Connected
             </h4>
-            <div className="mt-4 space-y-3 text-gray-300">
+            <div className="mt-2 space-y-3 text-gray-300">
               <p>Email: support@luxetravel.com</p>
               <p>Phone: +1 (800) 555-2048</p>
               <p>Open: Mon - Sat, 9:00 AM - 7:00 PM</p>
@@ -608,7 +673,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="mx-auto mt-10 max-w-[1820px] border-t border-cyan-900/30 pt-6 text-center text-sm text-gray-400">
+        <div className="mx-auto mt-5 max-w-[1820px] border-t border-cyan-900/30 pt-2 text-center text-sm text-gray-400">
           <p>
             Copyright {new Date().getFullYear()} Luxe Travel. All rights
             reserved.
