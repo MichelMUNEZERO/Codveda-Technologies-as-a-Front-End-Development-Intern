@@ -453,21 +453,25 @@ export default function Header() {
               <input
                 type="text"
                 placeholder="Full Name"
+                required
                 className="h-12 rounded-lg border border-gray-600 bg-[#23272d] px-4 text-base text-gray-100 outline-none transition focus:border-cyan-500"
               />
               <input
                 type="email"
                 placeholder="Email Address"
+                required
                 className="h-12 rounded-lg border border-gray-600 bg-[#23272d] px-4 text-base text-gray-100 outline-none transition focus:border-cyan-500"
               />
               <input
                 type="text"
                 placeholder="Destination of Interest"
+                required
                 className="h-12 rounded-lg border border-gray-600 bg-[#23272d] px-4 text-base text-gray-100 outline-none transition focus:border-cyan-500"
               />
               <textarea
                 rows="4"
                 placeholder="Your message"
+                required
                 className="rounded-lg border border-gray-600 bg-[#23272d] px-4 py-3 text-base text-gray-100 outline-none transition focus:border-cyan-500"
               />
 
