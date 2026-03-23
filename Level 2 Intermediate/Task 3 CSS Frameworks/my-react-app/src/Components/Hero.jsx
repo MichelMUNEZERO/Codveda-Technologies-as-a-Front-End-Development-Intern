@@ -9,6 +9,7 @@ export default function Header() {
       subtitle: "Popular Destinations",
       description: "Discover the world with our curated travel experiences.",
       details: "Check out some of our most requested travel locations.",
+      image: "/Photo/pexels-pixabay-415980.jpg",
       days: "7 days",
       nights: "5 nights",
       price: "From $1,299",
@@ -18,6 +19,7 @@ export default function Header() {
       subtitle: "Tropical Favorites",
       description: "Relax on pristine beaches with premium resort stays.",
       details: "Perfect for honeymooners and luxury-seeking travelers.",
+      image: "/Photo/pexels-pixabay-415980.jpg",
       days: "6 days",
       nights: "4 nights",
       price: "From $1,099",
@@ -27,6 +29,7 @@ export default function Header() {
       subtitle: "Nature Retreats",
       description: "Experience breathtaking trails and alpine landscapes.",
       details: "Ideal for adventure lovers and outdoor explorers.",
+      image: "/Photo/pexels-pixabay-415980.jpg",
       days: "8 days",
       nights: "6 nights",
       price: "From $1,449",
@@ -36,6 +39,7 @@ export default function Header() {
       subtitle: "Urban Highlights",
       description: "Dive into world-class dining, shopping, and culture.",
       details: "Great for quick getaways with unforgettable city vibes.",
+      image: "/Photo/pexels-pixabay-415980.jpg",
       days: "5 days",
       nights: "4 nights",
       price: "From $899",
@@ -45,6 +49,7 @@ export default function Header() {
       subtitle: "Golden Dunes",
       description: "Explore stunning desert landscapes and luxury camps.",
       details: "Best for sunset safaris and cultural desert experiences.",
+      image: "/Photo/pexels-pixabay-415980.jpg",
       days: "6 days",
       nights: "5 nights",
       price: "From $1,199",
@@ -54,6 +59,7 @@ export default function Header() {
       subtitle: "Historic Escapes",
       description: "Visit iconic landmarks and charming old-world cities.",
       details: "A perfect blend of history, art, and local cuisine.",
+      image: "/Photo/pexels-pixabay-415980.jpg",
       days: "9 days",
       nights: "7 nights",
       price: "From $1,799",
@@ -312,7 +318,10 @@ export default function Header() {
             {destinationCards.map((card) => (
               <article
                 key={card.subtitle}
-                className="flex h-full flex-col justify-between space-y-6 rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] sm:p-7"
+                className="flex h-full flex-col justify-between space-y-6 rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 bg-cover bg-center p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] sm:p-7"
+                style={{
+                  backgroundImage: `linear-gradient(rgba(2, 14, 23, 0.78), rgba(2, 14, 23, 0.78)), url(${card.image})`,
+                }}
               >
                 <div className="space-y-4">
                   <h2 className="text-2xl font-bold text-white">
