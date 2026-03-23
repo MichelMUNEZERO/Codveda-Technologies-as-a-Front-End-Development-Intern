@@ -548,6 +548,73 @@ export default function Header() {
           </div>
         </div>
       </section>
+
+      <footer className="border-t border-cyan-900/40 bg-[#02070d] px-4 py-12 sm:px-6">
+        <div className="mx-auto grid max-w-[1820px] gap-8 md:grid-cols-3">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <img
+                src="/Photo/Logo.png"
+                alt="Luxe Travel logo"
+                className="h-10 w-10 rounded-full"
+              />
+              <h3 className="text-2xl font-bold tracking-wide text-white">
+                Luxe Travel
+              </h3>
+            </div>
+            <p className="max-w-md text-gray-300">
+              Premium journeys crafted for explorers who want comfort,
+              adventure, and unforgettable moments.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold uppercase tracking-wide text-white">
+              Quick Links
+            </h4>
+            <ul className="mt-4 space-y-3 text-gray-300">
+              <li>
+                <a className="transition hover:text-cyan-300" href="/">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a className="transition hover:text-cyan-300" href="#tour">
+                  Tours
+                </a>
+              </li>
+              <li>
+                <a className="transition hover:text-cyan-300" href="#service">
+                  Services
+                </a>
+              </li>
+              <li>
+                <a className="transition hover:text-cyan-300" href="#contact">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold uppercase tracking-wide text-white">
+              Stay Connected
+            </h4>
+            <div className="mt-4 space-y-3 text-gray-300">
+              <p>Email: support@luxetravel.com</p>
+              <p>Phone: +1 (800) 555-2048</p>
+              <p>Open: Mon - Sat, 9:00 AM - 7:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-10 max-w-[1820px] border-t border-cyan-900/30 pt-6 text-center text-sm text-gray-400">
+          <p>
+            Copyright {new Date().getFullYear()} Luxe Travel. All rights
+            reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
