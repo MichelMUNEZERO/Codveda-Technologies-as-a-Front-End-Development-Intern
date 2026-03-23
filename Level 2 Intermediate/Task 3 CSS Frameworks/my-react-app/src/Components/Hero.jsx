@@ -156,7 +156,7 @@ export default function Header() {
                     </a>
                   </li>
                   <li className="font-medium transition-colors hover:text-cyan-300">
-                    <a href="/contact" onClick={() => setIsMenuOpen(false)}>
+                    <a href="#contact" onClick={() => setIsMenuOpen(false)}>
                       Contact
                     </a>
                   </li>
@@ -189,7 +189,7 @@ export default function Header() {
                   <a href="#service">Service</a>
                 </li>
                 <li className="font-medium transition-colors hover:text-cyan-300">
-                  <a href="/contact">Contact</a>
+                  <a href="#contact">Contact</a>
                 </li>
               </ul>
 
@@ -422,6 +422,80 @@ export default function Header() {
                 </button>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="contact"
+        className="scroll-mt-28 bg-[#06111b] px-4 py-14 sm:px-6 md:py-16"
+      >
+        <div className="mx-auto mb-8 max-w-3xl rounded-2xl border border-cyan-800/40 bg-[#0b1621]/70 p-6 text-center shadow-[0_14px_35px_rgba(2,14,23,0.4)] backdrop-blur-sm sm:mb-10 sm:p-8">
+          <h2 className="text-3xl font-bold uppercase tracking-wide text-white sm:text-4xl">
+            Contact
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-lg leading-relaxed text-gray-300 sm:text-xl">
+            Plan your next getaway with us. Send a message and our team will get
+            back to you quickly.
+          </p>
+        </div>
+
+        <div className="mx-auto grid max-w-[1820px] gap-6 lg:grid-cols-[1.1fr_1fr]">
+          <div className="rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] sm:p-8">
+            <h3 className="text-2xl font-semibold text-white sm:text-3xl">
+              Let&apos;s Plan Your Journey
+            </h3>
+            <p className="mt-3 text-gray-300">
+              Tell us your destination ideas, dates, and travel style.
+            </p>
+
+            <form className="mt-6 grid gap-4">
+              <input
+                type="text"
+                placeholder="Full Name"
+                className="h-12 rounded-lg border border-gray-600 bg-[#23272d] px-4 text-base text-gray-100 outline-none transition focus:border-cyan-500"
+              />
+              <input
+                type="email"
+                placeholder="Email Address"
+                className="h-12 rounded-lg border border-gray-600 bg-[#23272d] px-4 text-base text-gray-100 outline-none transition focus:border-cyan-500"
+              />
+              <input
+                type="text"
+                placeholder="Destination of Interest"
+                className="h-12 rounded-lg border border-gray-600 bg-[#23272d] px-4 text-base text-gray-100 outline-none transition focus:border-cyan-500"
+              />
+              <textarea
+                rows="4"
+                placeholder="Your message"
+                className="rounded-lg border border-gray-600 bg-[#23272d] px-4 py-3 text-base text-gray-100 outline-none transition focus:border-cyan-500"
+              />
+
+              <button
+                type="submit"
+                className="h-12 rounded-lg bg-gray-100 px-6 text-lg font-semibold text-[#0e2f4a] shadow-[0_10px_24px_rgba(2,14,23,0.35)] transition duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_16px_30px_rgba(2,14,23,0.5)]"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+
+          <div className="rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] sm:p-8">
+            <h3 className="text-2xl font-semibold text-white sm:text-3xl">
+              Contact Details
+            </h3>
+
+            <div className="mt-6 space-y-4 text-gray-200">
+              <p className="rounded-xl border border-cyan-800/30 bg-[#08111b]/80 p-4">
+                Email: support@luxetravel.com
+              </p>
+              <p className="rounded-xl border border-cyan-800/30 bg-[#08111b]/80 p-4">
+                Phone: +1 (800) 555-2048
+              </p>
+              <p className="rounded-xl border border-cyan-800/30 bg-[#08111b]/80 p-4">
+                Address: 125 Ocean Avenue, Miami, FL 33101
+              </p>
+            </div>
           </div>
         </div>
       </section>
