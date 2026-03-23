@@ -557,7 +557,7 @@ export default function Header() {
       </section>
 
       <footer className="border-t border-cyan-900/40 bg-[#02070d] px-4 py-12 sm:px-6">
-        <div className="mx-auto grid max-w-[1820px] gap-8 md:grid-cols-3">
+        <div className="mx-auto grid max-w-[1820px] gap-8 md:grid-cols-3 md:gap-14 lg:gap-20">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <img
