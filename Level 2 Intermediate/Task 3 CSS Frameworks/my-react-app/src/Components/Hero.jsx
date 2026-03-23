@@ -146,12 +146,12 @@ export default function Header() {
                     </a>
                   </li>
                   <li className="font-medium transition-colors hover:text-cyan-300">
-                    <a href="/tour" onClick={() => setIsMenuOpen(false)}>
+                    <a href="#tour" onClick={() => setIsMenuOpen(false)}>
                       Tour
                     </a>
                   </li>
                   <li className="font-medium transition-colors hover:text-cyan-300">
-                    <a href="/service" onClick={() => setIsMenuOpen(false)}>
+                    <a href="#service" onClick={() => setIsMenuOpen(false)}>
                       Service
                     </a>
                   </li>
@@ -183,10 +183,10 @@ export default function Header() {
                   <a href="/">Home</a>
                 </li>
                 <li className="font-medium transition-colors hover:text-cyan-300">
-                  <a href="/tour">Tour</a>
+                  <a href="#tour">Tour</a>
                 </li>
                 <li className="font-medium transition-colors hover:text-cyan-300">
-                  <a href="/service">Service</a>
+                  <a href="#service">Service</a>
                 </li>
                 <li className="font-medium transition-colors hover:text-cyan-300">
                   <a href="/contact">Contact</a>
@@ -330,7 +330,10 @@ export default function Header() {
           </button>
         </section>
       </main>
-      <section className="bg-[#06111b] px-4 py-14 sm:px-6 md:py-16">
+      <section
+        id="tour"
+        className="scroll-mt-28 bg-[#06111b] px-4 py-14 sm:px-6 md:py-16"
+      >
         <div className="mx-auto mb-8 max-w-3xl rounded-2xl border border-cyan-800/40 bg-[#0b1621]/70 p-6 text-center shadow-[0_14px_35px_rgba(2,14,23,0.4)] backdrop-blur-sm sm:mb-10 sm:p-8">
           <h2 className="text-3xl font-bold uppercase tracking-wide text-white sm:text-4xl">
             Destinations
@@ -387,7 +390,10 @@ export default function Header() {
         </div>
       </section>
 
-      <section className="bg-[#04101a] px-4 py-14 sm:px-6 md:py-16">
+      <section
+        id="service"
+        className="scroll-mt-28 bg-[#04101a] px-4 py-14 sm:px-6 md:py-16"
+      >
         <div className="mx-auto mb-8 max-w-3xl rounded-2xl border border-cyan-800/40 bg-[#0b1621]/70 p-6 text-center shadow-[0_14px_35px_rgba(2,14,23,0.4)] backdrop-blur-sm sm:mb-10 sm:p-8">
           <h2 className="text-3xl font-bold uppercase tracking-wide text-white sm:text-4xl">
             Services
