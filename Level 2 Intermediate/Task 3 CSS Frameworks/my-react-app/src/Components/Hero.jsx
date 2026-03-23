@@ -70,21 +70,25 @@ export default function Header() {
       title: "Flight Booking",
       description:
         "Get the best routes and fares with our partner airlines worldwide.",
+      image: "/Photo/Services%27s%20photo/Flight%20booking.jpg",
     },
     {
       title: "Hotel & Resort",
       description:
         "Stay in handpicked hotels and premium resorts for every budget.",
+      image: "/Photo/Services%27s%20photo/Hotel%20%26%20Resort.jpg",
     },
     {
       title: "Guided Tours",
       description:
         "Enjoy local experiences with expert guides and curated city tours.",
+      image: "/Photo/Services%27s%20photo/Guided%20Tours.jpg",
     },
     {
       title: "Travel Support",
       description:
         "24/7 support for itinerary changes, visa help, and travel assistance.",
+      image: "/Photo/Services%27s%20photo/Travel%20Support.jpg",
     },
   ];
 
@@ -398,7 +402,10 @@ export default function Header() {
             {serviceCards.map((service) => (
               <article
                 key={service.title}
-                className="rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] transition duration-300 hover:-translate-y-1 hover:border-cyan-500/70 hover:shadow-[0_28px_55px_rgba(2,14,23,0.65)]"
+                className="rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 bg-cover bg-center p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] transition duration-300 hover:-translate-y-1 hover:border-cyan-500/70 hover:shadow-[0_28px_55px_rgba(2,14,23,0.65)]"
+                style={{
+                  backgroundImage: `linear-gradient(rgba(2, 14, 23, 0.76), rgba(2, 14, 23, 0.76)), url(${service.image})`,
+                }}
               >
                 <h3 className="text-2xl font-semibold text-white">
                   {service.title}
