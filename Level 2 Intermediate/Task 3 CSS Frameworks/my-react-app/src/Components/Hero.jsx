@@ -450,30 +450,75 @@ export default function Header() {
             </p>
 
             <form className="mt-6 grid gap-4">
-              <input
-                type="text"
-                placeholder="Full Name"
-                required
-                className="h-12 rounded-lg border border-gray-600 bg-[#23272d] px-4 text-base text-gray-100 outline-none transition focus:border-cyan-500"
-              />
-              <input
-                type="email"
-                placeholder="Email Address"
-                required
-                className="h-12 rounded-lg border border-gray-600 bg-[#23272d] px-4 text-base text-gray-100 outline-none transition focus:border-cyan-500"
-              />
-              <input
-                type="text"
-                placeholder="Destination of Interest"
-                required
-                className="h-12 rounded-lg border border-gray-600 bg-[#23272d] px-4 text-base text-gray-100 outline-none transition focus:border-cyan-500"
-              />
-              <textarea
-                rows="4"
-                placeholder="Your message"
-                required
-                className="rounded-lg border border-gray-600 bg-[#23272d] px-4 py-3 text-base text-gray-100 outline-none transition focus:border-cyan-500"
-              />
+              <div className="relative">
+                <input
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  placeholder=" "
+                  autoComplete="name"
+                  required
+                  className="peer h-12 w-full rounded-lg border border-gray-600 bg-[#23272d] px-4 pt-5 text-base text-gray-100 outline-none transition focus:border-cyan-500"
+                />
+                <label
+                  htmlFor="contact-name"
+                  className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 bg-[#23272d] px-1 text-sm text-gray-400 transition-all duration-200 peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-xs peer-focus:text-cyan-300 peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:-translate-y-1/2 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-cyan-300"
+                >
+                  Full Name
+                </label>
+              </div>
+
+              <div className="relative">
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  placeholder=" "
+                  autoComplete="email"
+                  required
+                  className="peer h-12 w-full rounded-lg border border-gray-600 bg-[#23272d] px-4 pt-5 text-base text-gray-100 outline-none transition focus:border-cyan-500"
+                />
+                <label
+                  htmlFor="contact-email"
+                  className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 bg-[#23272d] px-1 text-sm text-gray-400 transition-all duration-200 peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-xs peer-focus:text-cyan-300 peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:-translate-y-1/2 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-cyan-300"
+                >
+                  Email Address
+                </label>
+              </div>
+
+              <div className="relative">
+                <input
+                  id="contact-destination"
+                  name="destination"
+                  type="text"
+                  placeholder=" "
+                  required
+                  className="peer h-12 w-full rounded-lg border border-gray-600 bg-[#23272d] px-4 pt-5 text-base text-gray-100 outline-none transition focus:border-cyan-500"
+                />
+                <label
+                  htmlFor="contact-destination"
+                  className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 bg-[#23272d] px-1 text-sm text-gray-400 transition-all duration-200 peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-xs peer-focus:text-cyan-300 peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:-translate-y-1/2 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-cyan-300"
+                >
+                  Destination of Interest
+                </label>
+              </div>
+
+              <div className="relative">
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  rows="4"
+                  placeholder=" "
+                  required
+                  className="peer w-full rounded-lg border border-gray-600 bg-[#23272d] px-4 pt-6 text-base text-gray-100 outline-none transition focus:border-cyan-500"
+                />
+                <label
+                  htmlFor="contact-message"
+                  className="pointer-events-none absolute left-4 top-5 -translate-y-1/2 bg-[#23272d] px-1 text-sm text-gray-400 transition-all duration-200 peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-xs peer-focus:text-cyan-300 peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:-translate-y-1/2 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-cyan-300"
+                >
+                  Your message
+                </label>
+              </div>
 
               <button
                 type="submit"
