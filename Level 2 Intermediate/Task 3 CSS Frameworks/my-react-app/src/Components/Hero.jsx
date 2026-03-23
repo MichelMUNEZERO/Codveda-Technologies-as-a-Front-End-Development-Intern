@@ -318,7 +318,7 @@ export default function Header() {
             {destinationCards.map((card) => (
               <article
                 key={card.subtitle}
-                className="flex h-full flex-col justify-between space-y-6 rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 bg-cover bg-center p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] sm:p-7"
+                className="flex h-full flex-col justify-between space-y-6 rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 bg-cover bg-center p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] transition duration-300 hover:-translate-y-1 hover:border-cyan-500/70 hover:shadow-[0_28px_55px_rgba(2,14,23,0.65)] sm:p-7"
                 style={{
                   backgroundImage: `linear-gradient(rgba(2, 14, 23, 0.78), rgba(2, 14, 23, 0.78)), url(${card.image})`,
                 }}
@@ -349,13 +349,13 @@ export default function Header() {
                   </span>
                 </div>
 
-                <button className="h-12 w-full rounded-lg bg-gray-100 px-6 text-lg font-semibold text-[#0e2f4a] transition hover:bg-white">
+                <button className="h-12 w-full rounded-lg bg-gray-100 px-6 text-lg font-semibold text-[#0e2f4a] shadow-[0_10px_24px_rgba(2,14,23,0.35)] transition duration-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-white hover:shadow-[0_16px_30px_rgba(2,14,23,0.5)] active:translate-y-0 active:scale-100">
                   Book Now
                 </button>
               </article>
             ))}
           </div>
-          <button className="mx-auto mt-8 flex w-fit items-center justify-center rounded-xl bg-gradient-to-r from-[#13a9b1] to-[#0f8a8f] px-7 py-3 text-lg font-semibold text-white shadow-[0_10px_24px_rgba(8,106,112,0.35)] transition duration-300 hover:-translate-y-0.5 hover:from-[#16bcc5] hover:to-[#10a0a6] hover:shadow-[0_16px_28px_rgba(8,106,112,0.45)] focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-[#06111b]">
+          <button className="mx-auto mt-8 flex w-fit items-center justify-center rounded-xl bg-gradient-to-r from-[#13a9b1] to-[#0f8a8f] px-7 py-3 text-lg font-semibold text-white shadow-[0_10px_24px_rgba(8,106,112,0.35)] transition duration-300 hover:-translate-y-0.5 hover:from-[#16bcd3] hover:to-[#10a0a6] hover:shadow-[0_16px_28px_rgba(8,106,112,0.45)] focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-[#06111b]">
             View More ...
           </button>
         </div>
