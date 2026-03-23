@@ -76,7 +76,7 @@ export default function Header() {
       title: "Hotel & Resort",
       description:
         "Stay in handpicked hotels and premium resorts for every budget.",
-      image: "/Photo/Services%27s%20photo/Hotel%20%26%20Resort.jpg",
+      image: "/Photo/Services's photo/Hotel & Resort.jpg",
     },
     {
       title: "Guided Tours",
@@ -404,7 +404,7 @@ export default function Header() {
                 key={service.title}
                 className="rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 bg-cover bg-center p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] transition duration-300 hover:-translate-y-1 hover:border-cyan-500/70 hover:shadow-[0_28px_55px_rgba(2,14,23,0.65)]"
                 style={{
-                  backgroundImage: `linear-gradient(rgba(2, 14, 23, 0.76), rgba(2, 14, 23, 0.76)), url(${service.image})`,
+                  backgroundImage: `linear-gradient(rgba(2, 14, 23, 0.76), rgba(2, 14, 23, 0.76)), url("${service.image}")`,
                 }}
               >
                 <h3 className="text-2xl font-semibold text-white">
