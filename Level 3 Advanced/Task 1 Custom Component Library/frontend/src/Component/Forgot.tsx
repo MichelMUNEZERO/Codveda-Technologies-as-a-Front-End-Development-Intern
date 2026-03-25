@@ -1,7 +1,11 @@
 import { IoMail } from "react-icons/io5";
 import pexelsBg from "../assets/pexels.jpg";
 
-export default function Forgot() {
+export default function Forgot({
+  onSwitchToLogin,
+}: {
+  onSwitchToLogin: () => void;
+}) {
   return (
     <div
       className="relative flex min-h-screen w-full items-center justify-center bg-cover bg-center bg-fixed px-5 py-8"
@@ -46,9 +50,13 @@ export default function Forgot() {
         </button>
 
         <div className="mt-4 text-center text-base text-white">
-          <a href="#" className="font-semibold hover:underline">
+          <button
+            type="button"
+            onClick={onSwitchToLogin}
+            className="bg-none border-none cursor-pointer font-semibold text-white hover:underline"
+          >
             Back to sign in
-          </a>
+          </button>
         </div>
       </div>
     </div>

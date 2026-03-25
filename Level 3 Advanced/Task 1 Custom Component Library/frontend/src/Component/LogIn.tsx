@@ -4,8 +4,10 @@ import { IoEye, IoEyeOff, IoMail } from "react-icons/io5";
 
 export default function LogIn({
   onSwitchToRegister,
+  onSwitchToForgot,
 }: {
   onSwitchToRegister: () => void;
+  onSwitchToForgot: () => void;
 }) {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -60,9 +62,13 @@ export default function LogIn({
               <input type="checkbox" className="accent-[#1d1d1d]" />
               Remember me
             </label>
-            <a href="#" className="no-underline hover:underline">
+            <button
+              type="button"
+              onClick={onSwitchToForgot}
+              className="bg-none border-none cursor-pointer text-white no-underline hover:underline"
+            >
               Forgot password?
-            </a>
+            </button>
           </div>
 
           <button
