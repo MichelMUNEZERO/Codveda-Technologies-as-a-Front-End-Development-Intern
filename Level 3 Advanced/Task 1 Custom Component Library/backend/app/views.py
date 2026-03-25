@@ -1,8 +1,10 @@
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 import json
 
+@csrf_exempt
 def signup(request):
     if request.method == 'POST':
         data = json.loads(request.body)
@@ -24,12 +26,27 @@ def signup(request):
 
     return JsonResponse({'error': 'Invalid request method'}, status=405)
 
+@csrf_exempt
 def signin(request):
+    if request.method == 'GET':
+        return JsonResponse({
+            'message': 'Signin endpoint is working. Send a POST request with username and password to log in.'
+        })
+
     if request.method == 'POST':
         data = json.loads(request.body)
 
-        username = data.get('username')
+        identifier = (data.get('username') or '').strip()
         password = data.get('password')
+
+        if not identifier or not password:
+            return JsonResponse({'error': 'Username/email and password are required'}, status=400)
+
+        username = identifier
+        if '@' in identifier:
+            matched_user = User.objects.filter(email__iexact=identifier).first()
+            if matched_user:
+                username = matched_user.username
 
         user = authenticate(request, username=username, password=password)
 
@@ -41,6 +58,7 @@ def signin(request):
     return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 
+@csrf_exempt
 def forgot_password(request):
     if request.method == 'POST':
         data = json.loads(request.body)
@@ -52,4 +70,4 @@ def forgot_password(request):
 
         return JsonResponse({'message': 'Password reset link would be sent'})
 
-    return JsonResponse({'error': 'Invalid request method'}, status=405)
+    return JsonResponse({'error': 'Invalid request method. Use GET or POST.'}, status=405)
