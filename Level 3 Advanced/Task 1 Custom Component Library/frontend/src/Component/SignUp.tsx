@@ -2,7 +2,11 @@ import { useState } from "react";
 import { IoEye, IoEyeOff, IoMail, IoPerson, IoCall } from "react-icons/io5";
 import pexelsBg from "../assets/pexels.jpg";
 
-export default function SignUp() {
+export default function SignUp({
+  onSwitchToLogin,
+}: {
+  onSwitchToLogin: () => void;
+}) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -123,9 +127,13 @@ export default function SignUp() {
           <div className="mt-4 text-center text-sm text-white">
             <p>
               Already have an account?{" "}
-              <a href="#" className="font-semibold hover:underline">
+              <button
+                type="button"
+                onClick={onSwitchToLogin}
+                className="font-semibold hover:underline bg-none border-none cursor-pointer text-white"
+              >
                 Login
-              </a>
+              </button>
             </p>
           </div>
         </form>
