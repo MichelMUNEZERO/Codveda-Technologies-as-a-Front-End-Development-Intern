@@ -509,7 +509,6 @@ export default function Header() {
                   Destination of Interest
                 </label>
               </div>
-
               <div className="relative">
                 <textarea
                   id="contact-message"
