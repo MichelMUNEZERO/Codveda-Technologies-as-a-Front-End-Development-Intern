@@ -1,7 +1,10 @@
 import pexelsBg from "../assets/pexels.jpg";
-import { IoLockClosed, IoMail } from "react-icons/io5";
+import { useState } from "react";
+import { IoEye, IoEyeOff, IoMail } from "react-icons/io5";
 
 export default function LogIn() {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div
       className="relative flex min-h-screen w-full items-center justify-center bg-cover bg-center bg-fixed px-5 py-8"
@@ -30,7 +33,7 @@ export default function LogIn() {
 
           <div className="relative my-[30px] h-[50px] w-full border-b-2 border-[#162938]">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               required
               placeholder=" "
               className="peer h-full w-full border-none bg-transparent px-[5px] pr-[35px] text-base font-semibold text-white outline-none"
@@ -38,9 +41,14 @@ export default function LogIn() {
             <label className="pointer-events-none absolute left-[5px] top-1/2 -translate-y-1/2 text-base font-medium text-white transition-all duration-500 peer-valid:-top-[5px] peer-focus:-top-[5px]">
               Password
             </label>
-            <span className="absolute right-[10px] top-1/2 -translate-y-1/2 text-xl leading-[57px] text-white">
-              <IoLockClosed />
-            </span>
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute right-[10px] top-1/2 -translate-y-1/2 text-xl leading-[57px] text-white"
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <IoEyeOff /> : <IoEye />}
+            </button>
           </div>
 
           <div className="my-[15px] mt-[-15px] flex items-center justify-between text-[0.9em] font-medium text-white">
