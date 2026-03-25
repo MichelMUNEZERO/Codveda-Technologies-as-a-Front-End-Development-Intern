@@ -1,4 +1,5 @@
 import pexelsBg from "../assets/pexels.jpg";
+import { IoLockClosed, IoMail } from "react-icons/io5";
 
 export default function LogIn() {
   return (
@@ -23,7 +24,7 @@ export default function LogIn() {
               Email
             </label>
             <span className="absolute right-[10px] top-1/2 -translate-y-1/2 text-xl leading-[57px] text-white">
-              @
+              <IoMail />
             </span>
           </div>
 
@@ -38,7 +39,7 @@ export default function LogIn() {
               Password
             </label>
             <span className="absolute right-[10px] top-1/2 -translate-y-1/2 text-xl leading-[57px] text-white">
-              #
+              <IoLockClosed />
             </span>
           </div>
 
