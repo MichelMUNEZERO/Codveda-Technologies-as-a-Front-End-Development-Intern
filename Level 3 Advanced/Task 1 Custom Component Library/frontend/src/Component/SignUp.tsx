@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IoEye, IoEyeOff, IoMail } from "react-icons/io5";
+import { IoEye, IoEyeOff, IoMail, IoPerson, IoCall } from "react-icons/io5";
 import pexelsBg from "../assets/pexels.jpg";
 
 export default function SignUp() {
@@ -29,6 +29,9 @@ export default function SignUp() {
             <label className="pointer-events-none absolute left-[5px] top-1/2 -translate-y-1/2 text-base font-medium text-white transition-all duration-500 peer-valid:-top-[5px] peer-focus:-top-[5px]">
               Full name
             </label>
+            <span className="absolute right-[10px] top-1/2 -translate-y-1/2 text-xl leading-[57px] text-white">
+              <IoPerson />
+            </span>
           </div>
 
           <div className="relative my-[30px] h-[50px] w-full border-b-2 border-[#162938]">
@@ -56,6 +59,9 @@ export default function SignUp() {
             <label className="pointer-events-none absolute left-[5px] top-1/2 -translate-y-1/2 text-base font-medium text-white transition-all duration-500 peer-valid:-top-[5px] peer-focus:-top-[5px]">
               Phone number
             </label>
+            <span className="absolute right-[10px] top-1/2 -translate-y-1/2 text-xl leading-[57px] text-white">
+              <IoCall />
+            </span>
           </div>
 
           <div className="relative my-[30px] h-[50px] w-full border-b-2 border-[#162938]">
