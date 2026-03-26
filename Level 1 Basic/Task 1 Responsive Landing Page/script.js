@@ -29,7 +29,7 @@ function changeBackground() {
 }
 
 // Change background every 1 minute (60000 milliseconds)
-setInterval(changeBackground, 60000);
+setInterval(changeBackground, 45000);
 
 // Hamburger menu toggle
 const hamburger = document.querySelector(".hamburger");
