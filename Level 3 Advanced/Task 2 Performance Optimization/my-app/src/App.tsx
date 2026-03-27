@@ -1,11 +1,11 @@
-import Signin from "./Component/Signin";
+// import Signin from "./Component/Signin";
 import Signup from "./Component/Signup";
 import Forgot from "./Component/Forgot";
 import "./index.css";
 export default function App() {
   return (
     <div>
-      <Signin />
+      {/* <Signin /> */}
       <Signup />
       <Forgot />
     </div>
