@@ -1,6 +1,12 @@
 import LogIn from "./Component/LogIn";
+import Signup from "./Component/Signup";
 function App() {
-  return <LogIn onSwitchToRegister={() => {}} onSwitchToForgot={() => {}} />;
+  return (
+    <div className="App">
+      <LogIn />
+      <Signup />
+    </div>
+  );
 }
 
 export default App;
