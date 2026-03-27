@@ -180,3 +180,80 @@ body {
 .login-register p a:hover {
   text-decoration: underline;
 }
+
+.forgot-wrapper {
+  width: 420px;
+  gap: 18px;
+}
+
+.forgot-header {
+  text-align: center;
+}
+
+.forgot-title {
+  color: #ffffff;
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.forgot-subtitle {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.forgot-form {
+  width: 100%;
+}
+
+.forgot-input-box {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin: 14px 0 12px;
+  background: rgba(10, 10, 10, 0.15);
+}
+
+.forgot-input-box input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 0.96rem;
+}
+
+.forgot-input-box input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.forgot-help-text {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.86rem;
+  line-height: 1.45;
+  margin-bottom: 16px;
+}
+
+.forgot-btn {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.forgot-footer {
+  width: 100%;
+  text-align: center;
+}
+
+.forgot-back-btn {
+  border: none;
+  background: transparent;
+  color: #66dcff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.forgot-back-btn:hover {
+  color: #9eeaff;
+}

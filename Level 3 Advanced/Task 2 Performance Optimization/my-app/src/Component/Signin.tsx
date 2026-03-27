@@ -1,4 +1,8 @@
-export default function Signin() {
+type SigninProps = {
+  onRegisterClick: () => void;
+};
+
+export default function Signin({ onRegisterClick }: SigninProps) {
   return (
     <div className="wrapper active-popup">
       <div className="form-box login">
@@ -28,7 +32,14 @@ export default function Signin() {
           <div className="login-register">
             <p>
               Don't have an account?
-              <a href="#" className="register-link">
+              <a
+                href="#"
+                className="register-link"
+                onClick={(event) => {
+                  event.preventDefault();
+                  onRegisterClick();
+                }}
+              >
                 Register
               </a>
             </p>
