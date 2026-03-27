@@ -1,4 +1,8 @@
-export default function Forgot() {
+type ForgotProps = {
+  onBackToSignin: () => void;
+};
+
+export default function Forgot({ onBackToSignin }: ForgotProps) {
   return (
     <div className="wrapper active-popup forgot-wrapper">
       <div className="forgot-header">
@@ -28,7 +32,9 @@ export default function Forgot() {
       </form>
 
       <div className="forgot-footer">
-        <button className="forgot-back-btn">Back to sign in</button>
+        <button className="forgot-back-btn" onClick={onBackToSignin}>
+          Back to sign in
+        </button>
       </div>
     </div>
   );

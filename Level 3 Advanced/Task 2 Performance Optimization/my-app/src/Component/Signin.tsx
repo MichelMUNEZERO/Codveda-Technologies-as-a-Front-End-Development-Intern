@@ -1,8 +1,12 @@
 type SigninProps = {
   onRegisterClick: () => void;
+  onForgotClick: () => void;
 };
 
-export default function Signin({ onRegisterClick }: SigninProps) {
+export default function Signin({
+  onRegisterClick,
+  onForgotClick,
+}: SigninProps) {
   return (
     <div className="wrapper active-popup">
       <div className="form-box login">
@@ -24,7 +28,15 @@ export default function Signin({ onRegisterClick }: SigninProps) {
             <label>
               <input type="checkbox" /> Remember me
             </label>
-            <a href="#">Forgot password?</a>
+            <a
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                onForgotClick();
+              }}
+            >
+              Forgot password?
+            </a>
           </div>
           <button type="submit" className="btn">
             Login
