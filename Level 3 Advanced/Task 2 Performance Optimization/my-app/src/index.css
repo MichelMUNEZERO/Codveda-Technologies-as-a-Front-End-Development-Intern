@@ -8,7 +8,7 @@
 body {
   background:
     linear-gradient(rgba(94, 92, 92, 0.5), rgba(94, 92, 92, 0.5)),
-    url("assets/image.png") no-repeat;
+    url("/image-optimized.jpg") no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -256,4 +256,35 @@ body {
 
 .forgot-back-btn:hover {
   color: #9eeaff;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+    padding: 14px;
+  }
+
+  .wrapper,
+  .forgot-wrapper {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .wrapper {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(12, 12, 12, 0.72);
+  }
 }

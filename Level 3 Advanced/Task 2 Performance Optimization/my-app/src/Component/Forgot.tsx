@@ -12,9 +12,18 @@ export default function Forgot({ onBackToSignin }: ForgotProps) {
         </p>
       </div>
 
-      <form className="forgot-form">
+      <form
+        className="forgot-form"
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}
+      >
         <div className="forgot-input-box">
+          <label className="sr-only" htmlFor="forgot-email">
+            Email or username
+          </label>
           <input
+            id="forgot-email"
             type="email"
             required
             placeholder="Enter your email or username"
@@ -32,7 +41,11 @@ export default function Forgot({ onBackToSignin }: ForgotProps) {
       </form>
 
       <div className="forgot-footer">
-        <button className="forgot-back-btn" onClick={onBackToSignin}>
+        <button
+          type="button"
+          className="forgot-back-btn"
+          onClick={onBackToSignin}
+        >
           Back to sign in
         </button>
       </div>

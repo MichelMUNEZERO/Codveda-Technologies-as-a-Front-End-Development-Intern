@@ -10,28 +10,28 @@ export default function Signup({ onLoginClick }: SignupProps) {
         <form action="#">
           <div className="input-box">
             <span className="icon"></span>
-            <input type="text" required />
-            <label>Full name</label>
+            <input id="signup-fullname" type="text" required />
+            <label htmlFor="signup-fullname">Full name</label>
           </div>
           <div className="input-box">
             <span className="icon"></span>
-            <input type="email" required />
-            <label>Email</label>
+            <input id="signup-email" type="email" required />
+            <label htmlFor="signup-email">Email</label>
           </div>
           <div className="input-box">
             <span className="icon"></span>
-            <input type="text" required />
-            <label>phone number</label>
+            <input id="signup-phone" type="text" required />
+            <label htmlFor="signup-phone">Phone number</label>
           </div>
           <div className="input-box">
             <span className="icon"></span>
-            <input type="password" required />
-            <label>Password</label>
+            <input id="signup-password" type="password" required />
+            <label htmlFor="signup-password">Password</label>
           </div>
           <div className="input-box">
             <span className="icon"></span>
-            <input type="password" required />
-            <label>Confirm Password</label>
+            <input id="signup-confirm-password" type="password" required />
+            <label htmlFor="signup-confirm-password">Confirm Password</label>
           </div>
           <div className="remember-forgot">
             <label>

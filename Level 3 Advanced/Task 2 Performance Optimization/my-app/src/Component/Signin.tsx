@@ -14,14 +14,14 @@ export default function Signin({
         <form action="#">
           <div className="input-box">
             <span className="icon"></span>
-            <input type="email" required />
-            <label>Email</label>
+            <input id="signin-email" type="email" required />
+            <label htmlFor="signin-email">Email</label>
           </div>
 
           <div className="input-box">
             <span className="icon"></span>
-            <input type="password" required />
-            <label>Password</label>
+            <input id="signin-password" type="password" required />
+            <label htmlFor="signin-password">Password</label>
           </div>
 
           <div className="remember-forgot">

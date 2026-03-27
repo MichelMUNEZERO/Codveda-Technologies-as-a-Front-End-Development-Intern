@@ -10,7 +10,7 @@ export default function App() {
   );
 
   return (
-    <div>
+    <main>
       {screen === "signin" && (
         <Signin
           onRegisterClick={() => setScreen("signup")}
@@ -23,6 +23,6 @@ export default function App() {
       {screen === "forgot" && (
         <Forgot onBackToSignin={() => setScreen("signin")} />
       )}
-    </div>
+    </main>
   );
 }
