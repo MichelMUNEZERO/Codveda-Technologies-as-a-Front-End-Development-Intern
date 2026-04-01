@@ -111,6 +111,7 @@ export default function Header() {
 
   const [assistantOpen, setAssistantOpen] = useState(false);
   const [assistantInput, setAssistantInput] = useState("");
+  const [socialIconTransforms, setSocialIconTransforms] = useState({});
   const [assistantMessages, setAssistantMessages] = useState([
     {
       id: 1,
@@ -290,6 +291,26 @@ export default function Header() {
     "What services do you offer?",
     "Help me plan my dates",
   ];
+
+  const handleSocialIconMouseMove = (event, iconKey) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const pointerX = event.clientX - rect.left;
+    const pointerY = event.clientY - rect.top;
+    const rotateY = (pointerX / rect.width - 0.5) * 18;
+    const rotateX = (0.5 - pointerY / rect.height) * 18;
+
+    setSocialIconTransforms((currentTransforms) => ({
+      ...currentTransforms,
+      [iconKey]: `perspective(500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.08)`,
+    }));
+  };
+
+  const handleSocialIconMouseLeave = (iconKey) => {
+    setSocialIconTransforms((currentTransforms) => ({
+      ...currentTransforms,
+      [iconKey]: "perspective(500px) rotateX(0deg) rotateY(0deg) scale(1)",
+    }));
+  };
 
   return (
     <div>
@@ -924,28 +945,64 @@ export default function Header() {
                 <a
                   href="#"
                   aria-label="Facebook"
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-xl text-gray-100 transition hover:bg-[#2ab5c4]"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-cyan-700/40 bg-white/10 text-xl text-gray-100 transition duration-200 hover:bg-[#2ab5c4] hover:shadow-[0_14px_26px_rgba(42,181,196,0.35)]"
+                  onMouseMove={(event) =>
+                    handleSocialIconMouseMove(event, "facebook")
+                  }
+                  onMouseLeave={() => handleSocialIconMouseLeave("facebook")}
+                  style={{
+                    transform:
+                      socialIconTransforms.facebook ||
+                      "perspective(500px) rotateX(0deg) rotateY(0deg) scale(1)",
+                  }}
                 >
                   <FaFacebookF />
                 </a>
                 <a
                   href="#"
                   aria-label="Instagram"
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-xl text-gray-100 transition hover:bg-[#2ab5c4]"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-cyan-700/40 bg-white/10 text-xl text-gray-100 transition duration-200 hover:bg-[#2ab5c4] hover:shadow-[0_14px_26px_rgba(42,181,196,0.35)]"
+                  onMouseMove={(event) =>
+                    handleSocialIconMouseMove(event, "instagram")
+                  }
+                  onMouseLeave={() => handleSocialIconMouseLeave("instagram")}
+                  style={{
+                    transform:
+                      socialIconTransforms.instagram ||
+                      "perspective(500px) rotateX(0deg) rotateY(0deg) scale(1)",
+                  }}
                 >
                   <FaInstagram />
                 </a>
                 <a
                   href="#"
                   aria-label="Twitter"
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-xl text-gray-100 transition hover:bg-[#2ab5c4]"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-cyan-700/40 bg-white/10 text-xl text-gray-100 transition duration-200 hover:bg-[#2ab5c4] hover:shadow-[0_14px_26px_rgba(42,181,196,0.35)]"
+                  onMouseMove={(event) =>
+                    handleSocialIconMouseMove(event, "twitter")
+                  }
+                  onMouseLeave={() => handleSocialIconMouseLeave("twitter")}
+                  style={{
+                    transform:
+                      socialIconTransforms.twitter ||
+                      "perspective(500px) rotateX(0deg) rotateY(0deg) scale(1)",
+                  }}
                 >
                   <FaTwitter />
                 </a>
                 <a
                   href="#"
                   aria-label="LinkedIn"
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-xl text-gray-100 transition hover:bg-[#2ab5c4]"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-cyan-700/40 bg-white/10 text-xl text-gray-100 transition duration-200 hover:bg-[#2ab5c4] hover:shadow-[0_14px_26px_rgba(42,181,196,0.35)]"
+                  onMouseMove={(event) =>
+                    handleSocialIconMouseMove(event, "linkedin")
+                  }
+                  onMouseLeave={() => handleSocialIconMouseLeave("linkedin")}
+                  style={{
+                    transform:
+                      socialIconTransforms.linkedin ||
+                      "perspective(500px) rotateX(0deg) rotateY(0deg) scale(1)",
+                  }}
                 >
                   <FaLinkedinIn />
                 </a>
