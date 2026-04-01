@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   FaBars,
   FaFacebookF,
+  FaLayerGroup,
   FaInstagram,
   FaLinkedinIn,
+  FaPaperPlane,
+  FaRobot,
   FaTimes,
   FaTwitter,
 } from "react-icons/fa";
@@ -97,6 +100,108 @@ export default function Header() {
         "24/7 support for itinerary changes, visa help, and travel assistance.",
       image: "/Photo/Services%27s%20photo/Travel%20Support.jpg",
     },
+  ];
+
+  const [assistantOpen, setAssistantOpen] = useState(false);
+  const [assistantInput, setAssistantInput] = useState("");
+  const [assistantMessages, setAssistantMessages] = useState([
+    {
+      id: 1,
+      role: "assistant",
+      text: "Hi, I can help you compare destinations, service options, and trip ideas. Try asking about beaches, luxury, or travel dates.",
+    },
+  ]);
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    if (assistantOpen) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [assistantMessages, assistantOpen]);
+
+  const getAssistantReply = (message) => {
+    const text = message.toLowerCase();
+
+    if (
+      text.includes("price") ||
+      text.includes("cost") ||
+      text.includes("budget")
+    ) {
+      return "Share your destination and dates, and I can suggest the best-fit trip style for your budget.";
+    }
+
+    if (
+      text.includes("service") ||
+      text.includes("help") ||
+      text.includes("support")
+    ) {
+      return "We can help with flight booking, hotels, guided tours, and travel support. Which one do you need?";
+    }
+
+    if (
+      text.includes("beach") ||
+      text.includes("island") ||
+      text.includes("sea")
+    ) {
+      return "For beaches, I’d start with an island escape and a resort stay. I can help narrow it by budget and trip length.";
+    }
+
+    if (
+      text.includes("mountain") ||
+      text.includes("adventure") ||
+      text.includes("hike")
+    ) {
+      return "Adventure trips work well with our mountain packages. I can suggest a calm retreat or a full outdoor itinerary.";
+    }
+
+    if (text.includes("city") || text.includes("urban")) {
+      return "City breaks are best for short, activity-packed trips. Tell me the city vibe you want and I’ll refine it.";
+    }
+
+    return "Tell me your destination, dates, or travel style, and I’ll suggest the best option from the page.";
+  };
+
+  const sendAssistantMessage = (message) => {
+    const trimmedMessage = message.trim();
+
+    if (!trimmedMessage) {
+      return;
+    }
+
+    const userMessage = {
+      id: Date.now(),
+      role: "user",
+      text: trimmedMessage,
+    };
+
+    setAssistantMessages((currentMessages) => [
+      ...currentMessages,
+      userMessage,
+    ]);
+    setAssistantInput("");
+
+    window.setTimeout(() => {
+      setAssistantMessages((currentMessages) => [
+        ...currentMessages,
+        {
+          id: Date.now() + 1,
+          role: "assistant",
+          text: getAssistantReply(trimmedMessage),
+        },
+      ]);
+    }, 450);
+  };
+
+  const handleAssistantSubmit = (event) => {
+    event.preventDefault();
+    sendAssistantMessage(assistantInput);
+  };
+
+  const quickPrompts = [
+    "Best beach trip",
+    "Luxury options",
+    "What services do you offer?",
+    "Help me plan my dates",
   ];
 
   return (
@@ -315,25 +420,114 @@ export default function Header() {
             </form>
           </div>
 
+          {assistantOpen && (
+            <div
+              id="travel-ai-panel"
+              className="fixed bottom-24 right-4 z-[90] w-[min(92vw,24rem)] overflow-hidden rounded-3xl border border-cyan-800/50 bg-[#07131f]/95 shadow-[0_30px_70px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:right-8 sm:bottom-28"
+            >
+              <div className="flex items-center justify-between border-b border-white/10 bg-[#0b1d2d] px-4 py-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#13a9b1] to-[#0f7f8b] text-white shadow-[0_12px_28px_rgba(0,0,0,0.38)]">
+                    <FaRobot className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold tracking-[0.24em] text-cyan-300 uppercase">
+                      Travel AI
+                    </p>
+                    <p className="text-xs text-slate-300">Online now</p>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-slate-200 transition hover:bg-white/15 hover:text-white"
+                  onClick={() => setAssistantOpen(false)}
+                  aria-label="Close assistant"
+                >
+                  <FaTimes className="h-4 w-4" />
+                </button>
+              </div>
+
+              <div className="max-h-80 overflow-y-auto px-4 py-4">
+                <div className="space-y-3">
+                  {assistantMessages.map((message) => (
+                    <div
+                      key={message.id}
+                      className={`flex ${
+                        message.role === "user"
+                          ? "justify-end"
+                          : "justify-start"
+                      }`}
+                    >
+                      <div
+                        className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm ${
+                          message.role === "user"
+                            ? "bg-[#13a9b1] text-white"
+                            : "border border-white/10 bg-[#0e1722] text-slate-100"
+                        }`}
+                      >
+                        {message.text}
+                      </div>
+                    </div>
+                  ))}
+                  <div ref={messagesEndRef} />
+                </div>
+              </div>
+
+              <div className="border-t border-white/10 bg-[#0b1621] px-4 py-4">
+                <div className="mb-3 flex flex-wrap gap-2">
+                  {quickPrompts.map((prompt) => (
+                    <button
+                      key={prompt}
+                      type="button"
+                      className="rounded-full border border-cyan-700/40 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-200 transition hover:border-cyan-400 hover:bg-white/10 hover:text-white"
+                      onClick={() => sendAssistantMessage(prompt)}
+                    >
+                      {prompt}
+                    </button>
+                  ))}
+                </div>
+
+                <form
+                  className="flex items-end gap-2"
+                  onSubmit={handleAssistantSubmit}
+                >
+                  <label htmlFor="travel-ai-input" className="sr-only">
+                    Ask Travel AI
+                  </label>
+                  <input
+                    id="travel-ai-input"
+                    type="text"
+                    value={assistantInput}
+                    onChange={(event) => setAssistantInput(event.target.value)}
+                    placeholder="Ask about destinations, prices, or services..."
+                    className="h-11 flex-1 rounded-2xl border border-gray-600 bg-[#11161d] px-4 text-sm text-gray-100 outline-none transition placeholder:text-slate-400 focus:border-cyan-400"
+                  />
+                  <button
+                    type="submit"
+                    className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-r from-[#13a9b1] to-[#0f7f8b] text-white transition hover:scale-105 hover:from-[#16bcd3] hover:to-[#10a0a6]"
+                    aria-label="Send message"
+                  >
+                    <FaPaperPlane className="h-4 w-4" />
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
+
           <button
             type="button"
-            className="absolute bottom-6 right-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#13a9b1] text-white shadow-[0_10px_24px_rgba(0,0,0,0.35)] sm:bottom-8 sm:right-8 sm:h-16 sm:w-16"
-            aria-label="Layers"
+            className="fixed bottom-6 right-4 z-[80] flex h-14 w-14 items-center justify-center rounded-full bg-[#13a9b1] text-white shadow-[0_16px_30px_rgba(0,0,0,0.35)] transition hover:scale-105 hover:bg-[#16bac3] sm:bottom-8 sm:right-8 sm:h-16 sm:w-16"
+            onClick={() => setAssistantOpen((currentValue) => !currentValue)}
+            aria-label={assistantOpen ? "Close assistant" : "Open assistant"}
+            aria-expanded={assistantOpen}
+            aria-controls="travel-ai-panel"
           >
-            <svg
-              viewBox="0 0 24 24"
-              className="h-8 w-8"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M12 2 3 7l9 5 9-5-9-5Z" />
-              <path d="m3 12 9 5 9-5" />
-              <path d="m3 17 9 5 9-5" />
-            </svg>
+            {assistantOpen ? (
+              <FaTimes className="h-6 w-6" />
+            ) : (
+              <FaLayerGroup className="h-8 w-8" />
+            )}
           </button>
         </section>
       </main>
