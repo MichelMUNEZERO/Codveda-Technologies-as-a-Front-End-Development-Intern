@@ -16,8 +16,10 @@ export default function Header() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [tourSectionVisible, setTourSectionVisible] = useState(false);
   const [serviceSectionVisible, setServiceSectionVisible] = useState(false);
+  const [contactSectionVisible, setContactSectionVisible] = useState(false);
   const tourSectionRef = useRef(null);
   const serviceSectionRef = useRef(null);
+  const contactSectionRef = useRef(null);
   const destinationCards = [
     {
       title: "Explore Our Destinations",
@@ -167,6 +169,30 @@ export default function Header() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setServiceSectionVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.2,
+      },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const section = contactSectionRef.current;
+
+    if (!section) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setContactSectionVisible(true);
           observer.disconnect();
         }
       },
@@ -712,8 +738,15 @@ export default function Header() {
       <section
         id="contact"
         className="scroll-mt-28 bg-[#06111b] px-4 py-14 sm:px-6 md:py-16"
+        ref={contactSectionRef}
       >
-        <div className="mx-auto mb-8 max-w-3xl rounded-2xl border border-cyan-800/40 bg-[#0b1621]/70 p-6 text-center shadow-[0_14px_35px_rgba(2,14,23,0.4)] backdrop-blur-sm sm:mb-10 sm:p-8">
+        <div
+          className={`mx-auto mb-8 max-w-3xl rounded-2xl border border-cyan-800/40 bg-[#0b1621]/70 p-6 text-center shadow-[0_14px_35px_rgba(2,14,23,0.4)] backdrop-blur-sm transition-all duration-700 ease-out sm:mb-10 sm:p-8 ${
+            contactSectionVisible
+              ? "translate-y-0 opacity-100"
+              : "translate-y-8 opacity-0"
+          }`}
+        >
           <h2 className="text-3xl font-bold uppercase tracking-wide text-white sm:text-4xl">
             Contact
           </h2>
@@ -724,7 +757,13 @@ export default function Header() {
         </div>
 
         <div className="mx-auto grid max-w-[1820px] gap-6 lg:grid-cols-[1.1fr_1fr]">
-          <div className="rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] sm:p-8">
+          <div
+            className={`rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] transition-all duration-700 delay-100 ease-out sm:p-8 ${
+              contactSectionVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-10 opacity-0"
+            }`}
+          >
             <h3 className="text-2xl font-semibold text-white sm:text-3xl">
               Let&apos;s Plan Your Journey
             </h3>
@@ -811,7 +850,13 @@ export default function Header() {
             </form>
           </div>
 
-          <div className="rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] sm:p-8">
+          <div
+            className={`rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] transition-all duration-700 delay-200 ease-out sm:p-8 ${
+              contactSectionVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-10 opacity-0"
+            }`}
+          >
             <h3 className="text-2xl font-semibold text-white sm:text-3xl">
               Contact Details
             </h3>
