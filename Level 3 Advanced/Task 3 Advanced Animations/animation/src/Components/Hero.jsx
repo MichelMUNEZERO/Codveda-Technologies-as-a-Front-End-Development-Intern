@@ -159,13 +159,8 @@ export default function Header() {
     };
 
     const resizeCanvas = () => {
-      const parent = canvas.parentElement;
-
-      if (!parent) {
-        return;
-      }
-
-      const { width, height } = parent.getBoundingClientRect();
+      const width = window.innerWidth;
+      const height = window.innerHeight;
       const devicePixelRatio = window.devicePixelRatio || 1;
 
       canvas.width = width * devicePixelRatio;
@@ -176,13 +171,8 @@ export default function Header() {
     };
 
     const createParticles = () => {
-      const parent = canvas.parentElement;
-
-      if (!parent) {
-        return;
-      }
-
-      const { width, height } = parent.getBoundingClientRect();
+      const width = window.innerWidth;
+      const height = window.innerHeight;
 
       particles.length = 0;
 
@@ -199,13 +189,8 @@ export default function Header() {
     };
 
     const drawParticles = () => {
-      const parent = canvas.parentElement;
-
-      if (!parent) {
-        return;
-      }
-
-      const { width, height } = parent.getBoundingClientRect();
+      const width = window.innerWidth;
+      const height = window.innerHeight;
 
       context.clearRect(0, 0, width, height);
 
@@ -262,16 +247,8 @@ export default function Header() {
     };
 
     const handlePointerMove = (event) => {
-      const parent = canvas.parentElement;
-
-      if (!parent) {
-        return;
-      }
-
-      const rect = parent.getBoundingClientRect();
-
-      mouse.x = event.clientX - rect.left;
-      mouse.y = event.clientY - rect.top;
+      mouse.x = event.clientX;
+      mouse.y = event.clientY;
       mouse.active = true;
     };
 
@@ -480,7 +457,12 @@ export default function Header() {
   };
 
   return (
-    <div>
+    <div className="relative isolate">
+      <canvas
+        ref={heroCanvasRef}
+        className="pointer-events-none fixed inset-0 z-[5]"
+        aria-hidden="true"
+      />
       <main
         className="relative min-h-screen bg-cover bg-center pt-44 sm:pt-40 md:pt-28"
         style={{
@@ -491,12 +473,6 @@ export default function Header() {
           className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/35 to-black/20"
           aria-hidden="true"
         />
-        <canvas
-          ref={heroCanvasRef}
-          className="pointer-events-none absolute inset-0 z-[5]"
-          aria-hidden="true"
-        />
-
         <header className="fixed left-1/2 top-3 z-50 w-[calc(100%-1rem)] max-w-[1820px] -translate-x-1/2 rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 shadow-[0_20px_45px_rgba(2,14,23,0.55)] backdrop-blur-sm sm:top-4 sm:w-[calc(100%-2rem)]">
           <nav className="container relative mx-auto px-3 py-3 sm:px-4 md:py-4">
             {/* Mobile Navbar (< md) */}
