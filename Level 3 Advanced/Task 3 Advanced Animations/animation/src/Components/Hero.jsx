@@ -13,6 +13,8 @@ import {
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [tourSectionVisible, setTourSectionVisible] = useState(false);
+  const tourSectionRef = useRef(null);
   const destinationCards = [
     {
       title: "Explore Our Destinations",
@@ -118,6 +120,30 @@ export default function Header() {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   }, [assistantMessages, assistantOpen]);
+
+  useEffect(() => {
+    const section = tourSectionRef.current;
+
+    if (!section) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTourSectionVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.2,
+      },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
 
   const getAssistantReply = (message) => {
     const text = message.toLowerCase();
@@ -253,24 +279,16 @@ export default function Header() {
               >
                 <ul className="flex flex-col gap-3 text-base text-gray-100">
                   <li className="font-medium transition-colors hover:text-cyan-300">
-                    <a href="/" onClick={() => setIsMenuOpen(false)}>
-                      Home
-                    </a>
+                    <a href="/">Home</a>
                   </li>
                   <li className="font-medium transition-colors hover:text-cyan-300">
-                    <a href="#tour" onClick={() => setIsMenuOpen(false)}>
-                      Tour
-                    </a>
+                    <a href="#tour">Tour</a>
                   </li>
                   <li className="font-medium transition-colors hover:text-cyan-300">
-                    <a href="#service" onClick={() => setIsMenuOpen(false)}>
-                      Service
-                    </a>
+                    <a href="#service">Service</a>
                   </li>
                   <li className="font-medium transition-colors hover:text-cyan-300">
-                    <a href="#contact" onClick={() => setIsMenuOpen(false)}>
-                      Contact
-                    </a>
+                    <a href="#contact">Contact</a>
                   </li>
                 </ul>
 
@@ -437,15 +455,6 @@ export default function Header() {
                     <p className="text-xs text-slate-300">Online now</p>
                   </div>
                 </div>
-
-                <button
-                  type="button"
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-slate-200 transition hover:bg-white/15 hover:text-white"
-                  onClick={() => setAssistantOpen(false)}
-                  aria-label="Close assistant"
-                >
-                  <FaTimes className="h-4 w-4" />
-                </button>
               </div>
 
               <div className="max-h-80 overflow-y-auto px-4 py-4">
@@ -519,23 +528,26 @@ export default function Header() {
             type="button"
             className="fixed bottom-6 right-4 z-[80] flex h-14 w-14 items-center justify-center rounded-full bg-[#13a9b1] text-white shadow-[0_16px_30px_rgba(0,0,0,0.35)] transition hover:scale-105 hover:bg-[#16bac3] sm:bottom-8 sm:right-8 sm:h-16 sm:w-16"
             onClick={() => setAssistantOpen((currentValue) => !currentValue)}
-            aria-label={assistantOpen ? "Close assistant" : "Open assistant"}
+            aria-label="Open assistant"
             aria-expanded={assistantOpen}
             aria-controls="travel-ai-panel"
           >
-            {assistantOpen ? (
-              <FaTimes className="h-6 w-6" />
-            ) : (
-              <FaLayerGroup className="h-8 w-8" />
-            )}
+            <FaLayerGroup className="h-8 w-8" />
           </button>
         </section>
       </main>
       <section
         id="tour"
         className="scroll-mt-28 bg-[#06111b] px-4 py-14 sm:px-6 md:py-16"
+        ref={tourSectionRef}
       >
-        <div className="mx-auto mb-8 max-w-3xl rounded-2xl border border-cyan-800/40 bg-[#0b1621]/70 p-6 text-center shadow-[0_14px_35px_rgba(2,14,23,0.4)] backdrop-blur-sm sm:mb-10 sm:p-8">
+        <div
+          className={`mx-auto mb-8 max-w-3xl rounded-2xl border border-cyan-800/40 bg-[#0b1621]/70 p-6 text-center shadow-[0_14px_35px_rgba(2,14,23,0.4)] backdrop-blur-sm transition-all duration-700 ease-out sm:mb-10 sm:p-8 ${
+            tourSectionVisible
+              ? "translate-y-0 opacity-100"
+              : "translate-y-8 opacity-0"
+          }`}
+        >
           <h2 className="text-3xl font-bold uppercase tracking-wide text-white sm:text-4xl">
             Destinations
           </h2>
@@ -545,12 +557,17 @@ export default function Header() {
         </div>
         <div className="mx-auto max-w-[1820px]">
           <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-            {destinationCards.map((card) => (
+            {destinationCards.map((card, index) => (
               <article
                 key={card.subtitle}
-                className="flex h-full flex-col justify-between space-y-6 rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 bg-cover bg-center p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] transition duration-300 hover:-translate-y-1 hover:border-cyan-500/70 hover:shadow-[0_28px_55px_rgba(2,14,23,0.65)] sm:p-7"
+                className={`flex h-full flex-col justify-between space-y-6 rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 bg-cover bg-center p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] transition-all duration-700 ease-out hover:-translate-y-1 hover:border-cyan-500/70 hover:shadow-[0_28px_55px_rgba(2,14,23,0.65)] sm:p-7 ${
+                  tourSectionVisible
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-10 opacity-0"
+                }`}
                 style={{
                   backgroundImage: `linear-gradient(rgba(2, 14, 23, 0.78), rgba(2, 14, 23, 0.78)), url(${card.image})`,
+                  transitionDelay: `${index * 120}ms`,
                 }}
               >
                 <div className="space-y-4">
