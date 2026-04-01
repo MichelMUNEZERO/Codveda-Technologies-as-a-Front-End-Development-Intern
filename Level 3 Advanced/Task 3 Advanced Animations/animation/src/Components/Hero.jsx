@@ -460,7 +460,7 @@ export default function Header() {
     <div className="relative isolate">
       <canvas
         ref={heroCanvasRef}
-        className="pointer-events-none fixed inset-0 z-[5]"
+        className="pointer-events-none fixed inset-0 z-0"
         aria-hidden="true"
       />
       <main
