@@ -20,6 +20,7 @@ export default function Header() {
   const tourSectionRef = useRef(null);
   const serviceSectionRef = useRef(null);
   const contactSectionRef = useRef(null);
+  const heroCanvasRef = useRef(null);
   const destinationCards = [
     {
       title: "Explore Our Destinations",
@@ -133,6 +134,172 @@ export default function Header() {
     });
 
     return () => window.cancelAnimationFrame(animationFrame);
+  }, []);
+
+  useEffect(() => {
+    const canvas = heroCanvasRef.current;
+
+    if (!canvas) {
+      return undefined;
+    }
+
+    const context = canvas.getContext("2d");
+
+    if (!context) {
+      return undefined;
+    }
+
+    const particleCount = 110;
+    const repelRadius = 140;
+    const particles = [];
+    const mouse = {
+      x: 0,
+      y: 0,
+      active: false,
+    };
+
+    const resizeCanvas = () => {
+      const parent = canvas.parentElement;
+
+      if (!parent) {
+        return;
+      }
+
+      const { width, height } = parent.getBoundingClientRect();
+      const devicePixelRatio = window.devicePixelRatio || 1;
+
+      canvas.width = width * devicePixelRatio;
+      canvas.height = height * devicePixelRatio;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      context.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    };
+
+    const createParticles = () => {
+      const parent = canvas.parentElement;
+
+      if (!parent) {
+        return;
+      }
+
+      const { width, height } = parent.getBoundingClientRect();
+
+      particles.length = 0;
+
+      for (let index = 0; index < particleCount; index += 1) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          size: 0.8 + Math.random() * 2.1,
+          shimmer: Math.random() * Math.PI * 2,
+        });
+      }
+    };
+
+    const drawParticles = () => {
+      const parent = canvas.parentElement;
+
+      if (!parent) {
+        return;
+      }
+
+      const { width, height } = parent.getBoundingClientRect();
+
+      context.clearRect(0, 0, width, height);
+
+      particles.forEach((particle) => {
+        const dx = particle.x - mouse.x;
+        const dy = particle.y - mouse.y;
+        const distance = Math.hypot(dx, dy);
+
+        if (mouse.active && distance < repelRadius && distance > 0.001) {
+          const force = (1 - distance / repelRadius) * 0.9;
+          const directionX = dx / distance;
+          const directionY = dy / distance;
+
+          particle.vx += directionX * force * 0.45;
+          particle.vy += directionY * force * 0.45;
+        }
+
+        particle.vx += Math.sin(particle.shimmer) * 0.002;
+        particle.vy += Math.cos(particle.shimmer) * 0.002;
+
+        particle.vx *= 0.985;
+        particle.vy *= 0.985;
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        particle.shimmer += 0.02;
+
+        if (particle.x < -12) {
+          particle.x = width + 12;
+        }
+
+        if (particle.x > width + 12) {
+          particle.x = -12;
+        }
+
+        if (particle.y < -12) {
+          particle.y = height + 12;
+        }
+
+        if (particle.y > height + 12) {
+          particle.y = -12;
+        }
+
+        const glow = 0.45 + Math.sin(particle.shimmer) * 0.18;
+
+        context.beginPath();
+        context.fillStyle = `rgba(255, 255, 255, ${glow})`;
+        context.shadowColor = "rgba(255, 255, 255, 0.35)";
+        context.shadowBlur = 12;
+        context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        context.fill();
+      });
+
+      context.shadowBlur = 0;
+    };
+
+    const handlePointerMove = (event) => {
+      const parent = canvas.parentElement;
+
+      if (!parent) {
+        return;
+      }
+
+      const rect = parent.getBoundingClientRect();
+
+      mouse.x = event.clientX - rect.left;
+      mouse.y = event.clientY - rect.top;
+      mouse.active = true;
+    };
+
+    const handlePointerLeave = () => {
+      mouse.active = false;
+    };
+
+    let animationFrameId = 0;
+
+    const animate = () => {
+      drawParticles();
+      animationFrameId = window.requestAnimationFrame(animate);
+    };
+
+    resizeCanvas();
+    createParticles();
+    animate();
+
+    window.addEventListener("resize", resizeCanvas);
+    canvas.addEventListener("pointermove", handlePointerMove);
+    canvas.addEventListener("pointerleave", handlePointerLeave);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", resizeCanvas);
+      canvas.removeEventListener("pointermove", handlePointerMove);
+      canvas.removeEventListener("pointerleave", handlePointerLeave);
+    };
   }, []);
 
   useEffect(() => {
@@ -322,6 +489,11 @@ export default function Header() {
       >
         <div
           className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/35 to-black/20"
+          aria-hidden="true"
+        />
+        <canvas
+          ref={heroCanvasRef}
+          className="pointer-events-none absolute inset-0 z-[5]"
           aria-hidden="true"
         />
 
