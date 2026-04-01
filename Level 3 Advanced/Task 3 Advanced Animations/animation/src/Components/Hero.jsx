@@ -15,7 +15,9 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
   const [tourSectionVisible, setTourSectionVisible] = useState(false);
+  const [serviceSectionVisible, setServiceSectionVisible] = useState(false);
   const tourSectionRef = useRef(null);
+  const serviceSectionRef = useRef(null);
   const destinationCards = [
     {
       title: "Explore Our Destinations",
@@ -141,6 +143,30 @@ export default function Header() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setTourSectionVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.2,
+      },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const section = serviceSectionRef.current;
+
+    if (!section) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setServiceSectionVisible(true);
           observer.disconnect();
         }
       },
@@ -638,8 +664,15 @@ export default function Header() {
       <section
         id="service"
         className="scroll-mt-28 bg-[#04101a] px-4 py-14 sm:px-6 md:py-16"
+        ref={serviceSectionRef}
       >
-        <div className="mx-auto mb-8 max-w-3xl rounded-2xl border border-cyan-800/40 bg-[#0b1621]/70 p-6 text-center shadow-[0_14px_35px_rgba(2,14,23,0.4)] backdrop-blur-sm sm:mb-10 sm:p-8">
+        <div
+          className={`mx-auto mb-8 max-w-3xl rounded-2xl border border-cyan-800/40 bg-[#0b1621]/70 p-6 text-center shadow-[0_14px_35px_rgba(2,14,23,0.4)] backdrop-blur-sm transition-all duration-700 ease-out sm:mb-10 sm:p-8 ${
+            serviceSectionVisible
+              ? "translate-y-0 opacity-100"
+              : "translate-y-8 opacity-0"
+          }`}
+        >
           <h2 className="text-3xl font-bold uppercase tracking-wide text-white sm:text-4xl">
             Services
           </h2>
@@ -650,12 +683,17 @@ export default function Header() {
 
         <div className="mx-auto max-w-[1820px]">
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {serviceCards.map((service) => (
+            {serviceCards.map((service, index) => (
               <article
                 key={service.title}
-                className="rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 bg-cover bg-center p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] transition duration-300 hover:-translate-y-1 hover:border-cyan-500/70 hover:shadow-[0_28px_55px_rgba(2,14,23,0.65)]"
+                className={`rounded-2xl border border-cyan-900/40 bg-[#0b1621]/80 bg-cover bg-center p-6 shadow-[0_20px_45px_rgba(2,14,23,0.55)] transition-all duration-700 ease-out hover:-translate-y-1 hover:border-cyan-500/70 hover:shadow-[0_28px_55px_rgba(2,14,23,0.65)] ${
+                  serviceSectionVisible
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-10 opacity-0"
+                }`}
                 style={{
                   backgroundImage: `linear-gradient(rgba(2, 14, 23, 0.76), rgba(2, 14, 23, 0.76)), url("${service.image}")`,
+                  transitionDelay: `${index * 120}ms`,
                 }}
               >
                 <h3 className="text-2xl font-semibold text-white">
