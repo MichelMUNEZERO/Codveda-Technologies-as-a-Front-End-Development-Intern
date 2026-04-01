@@ -13,6 +13,7 @@ import {
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [heroVisible, setHeroVisible] = useState(false);
   const [tourSectionVisible, setTourSectionVisible] = useState(false);
   const tourSectionRef = useRef(null);
   const destinationCards = [
@@ -120,6 +121,14 @@ export default function Header() {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   }, [assistantMessages, assistantOpen]);
+
+  useEffect(() => {
+    const animationFrame = window.requestAnimationFrame(() => {
+      setHeroVisible(true);
+    });
+
+    return () => window.cancelAnimationFrame(animationFrame);
+  }, []);
 
   useEffect(() => {
     const section = tourSectionRef.current;
@@ -331,14 +340,32 @@ export default function Header() {
         </header>
         <div className="relative z-10 container mx-auto px-4 pt-12 pb-20 sm:px-6 sm:pt-16 md:pt-20 md:pb-24">
           <div className="max-w-5xl space-y-6 text-left text-white sm:space-y-8">
-            <h2 className="text-4xl font-bold uppercase leading-[1.05] tracking-wide sm:text-5xl md:text-6xl lg:text-7xl">
+            <h2
+              className={`text-4xl font-bold uppercase leading-[1.05] tracking-wide transition-all duration-700 ease-out sm:text-5xl md:text-6xl lg:text-7xl ${
+                heroVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-8 opacity-0"
+              }`}
+            >
               EXPLORE LUXURY TRAVEL LIKE NEVER BEFORE
             </h2>
-            <p className="max-w-4xl text-lg text-gray-100 sm:text-2xl md:text-3xl">
+            <p
+              className={`max-w-4xl text-lg text-gray-100 transition-all duration-700 delay-150 ease-out sm:text-2xl md:text-3xl ${
+                heroVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-8 opacity-0"
+              }`}
+            >
               Where will your story take you? We turn travel dreams into
               memories that last a lifetime
             </p>
-            <button className="inline-flex items-center gap-2 rounded-full border-2 border-white px-6 py-2.5 text-base font-bold text-white transition hover:bg-white hover:text-[#0b1621] sm:px-8 sm:py-3 sm:text-lg md:text-2xl">
+            <button
+              className={`inline-flex items-center gap-2 rounded-full border-2 border-white px-6 py-2.5 text-base font-bold text-white transition-all duration-700 delay-300 hover:bg-white hover:text-[#0b1621] sm:px-8 sm:py-3 sm:text-lg md:text-2xl ${
+                heroVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-8 opacity-0"
+              }`}
+            >
               Explore offerings
               <span aria-hidden="true">&rarr;</span>
             </button>
