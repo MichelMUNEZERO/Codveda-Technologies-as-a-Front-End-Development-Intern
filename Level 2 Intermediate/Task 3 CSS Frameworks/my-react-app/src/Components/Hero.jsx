@@ -749,14 +749,14 @@ export default function Header() {
                   <FaFacebookF />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.instagram.com/lechimunnaa/"
                   aria-label="Instagram"
                   className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-xl text-gray-100 transition hover:bg-[#2ab5c4]"
                 >
                   <FaInstagram />
                 </a>
                 <a
-                  href="#"
+                  href="https://x.com/lehcimunna"
                   aria-label="Twitter"
                   className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-xl text-gray-100 transition hover:bg-[#2ab5c4]"
                 >
@@ -806,7 +806,7 @@ export default function Header() {
               Stay Connected
             </h4>
             <div className="mt-2 space-y-3 text-gray-300">
-              <p>Email: support@luxetravel.com</p>
+              <p>Email: michelmunezero25@gmail.com</p>
               <p>Phone: +1 (800) 555-2048</p>
               <p>Open: Mon - Sat, 9:00 AM - 7:00 PM</p>
             </div>
