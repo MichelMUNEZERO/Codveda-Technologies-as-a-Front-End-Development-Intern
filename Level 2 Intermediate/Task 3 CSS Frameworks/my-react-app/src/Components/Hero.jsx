@@ -10,6 +10,80 @@ import {
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAiChatOpen, setIsAiChatOpen] = useState(false);
+  const [chatInput, setChatInput] = useState("");
+  const [isThinking, setIsThinking] = useState(false);
+  const [chatHistory, setChatHistory] = useState([
+    {
+      role: "assistant",
+      text: "Hi, I am your travel AI assistant. Ask me about destinations, budget, duration, or travel style.",
+    },
+  ]);
+
+  const buildTravelReply = (message) => {
+    const normalized = message.toLowerCase();
+
+    if (normalized.includes("budget") || normalized.includes("cheap")) {
+      return "For budget-friendly travel, I recommend our City Break package starting from $899. Traveling in shoulder season can lower flight and hotel costs by 15-30%.";
+    }
+
+    if (normalized.includes("honeymoon") || normalized.includes("romantic")) {
+      return "For a honeymoon, Island Escape is a great fit with beach resorts and private experiences. A 6-day plan works well for a relaxed pace.";
+    }
+
+    if (
+      normalized.includes("family") ||
+      normalized.includes("kids") ||
+      normalized.includes("children")
+    ) {
+      return "For family travel, I suggest City Break or European Classics with flexible activities and comfortable pacing. I can draft a day-by-day family itinerary if you share your dates.";
+    }
+
+    if (
+      normalized.includes("adventure") ||
+      normalized.includes("hiking") ||
+      normalized.includes("mountain")
+    ) {
+      return "Mountain Adventure is ideal for you: scenic trails, nature stays, and active experiences across 8 days and 6 nights.";
+    }
+
+    if (normalized.includes("days") || normalized.includes("duration")) {
+      return "Most travelers choose 5-8 days for a balanced trip. If you tell me your destination and style, I can suggest the perfect duration.";
+    }
+
+    return "Great question. Based on your interest, I can recommend a destination, ideal duration, and package estimate. Share your preferred dates and budget to get a tailored plan.";
+  };
+
+  const handleChatSubmit = (event) => {
+    event.preventDefault();
+    const trimmedMessage = chatInput.trim();
+    if (!trimmedMessage || isThinking) {
+      return;
+    }
+
+    setChatHistory((prev) => [
+      ...prev,
+      {
+        role: "user",
+        text: trimmedMessage,
+      },
+    ]);
+    setChatInput("");
+    setIsThinking(true);
+
+    setTimeout(() => {
+      const reply = buildTravelReply(trimmedMessage);
+      setChatHistory((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          text: reply,
+        },
+      ]);
+      setIsThinking(false);
+    }, 500);
+  };
+
   const destinationCards = [
     {
       title: "Explore Our Destinations",
@@ -169,7 +243,14 @@ export default function Header() {
                   </li>
                 </ul>
 
-                <button className="mt-4 w-full rounded bg-blue-500 px-4 py-2 text-sm font-bold text-white transition hover:bg-blue-700">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsAiChatOpen(true);
+                    setIsMenuOpen(false);
+                  }}
+                  className="mt-4 w-full rounded bg-blue-500 px-4 py-2 text-sm font-bold text-white transition hover:bg-blue-700"
+                >
                   Message
                 </button>
               </div>
@@ -200,7 +281,11 @@ export default function Header() {
                 </li>
               </ul>
 
-              <button className="rounded bg-blue-500 px-4 py-2 text-base font-bold text-white transition hover:bg-blue-700">
+              <button
+                type="button"
+                onClick={() => setIsAiChatOpen(true)}
+                className="rounded bg-blue-500 px-4 py-2 text-base font-bold text-white transition hover:bg-blue-700"
+              >
                 Message
               </button>
             </div>
@@ -317,8 +402,9 @@ export default function Header() {
 
           <button
             type="button"
-            className="absolute bottom-6 right-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#13a9b1] text-white shadow-[0_10px_24px_rgba(0,0,0,0.35)] sm:bottom-8 sm:right-8 sm:h-16 sm:w-16"
-            aria-label="Layers"
+            className="fixed bottom-6 right-4 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-[#13a9b1] text-white shadow-[0_10px_24px_rgba(0,0,0,0.35)] sm:bottom-8 sm:right-8 sm:h-16 sm:w-16"
+            aria-label="Open AI chat"
+            onClick={() => setIsAiChatOpen((prev) => !prev)}
           >
             <svg
               viewBox="0 0 24 24"
@@ -330,11 +416,66 @@ export default function Header() {
               strokeLinejoin="round"
               aria-hidden="true"
             >
-              <path d="M12 2 3 7l9 5 9-5-9-5Z" />
-              <path d="m3 12 9 5 9-5" />
-              <path d="m3 17 9 5 9-5" />
+              <path d="M21 14a4 4 0 0 1-4 4H8l-5 4V6a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z" />
+              <path d="M8 9h8" />
+              <path d="M8 13h5" />
             </svg>
           </button>
+
+          {isAiChatOpen && (
+            <div className="fixed bottom-24 right-4 z-30 w-[calc(100%-2rem)] max-w-sm rounded-2xl border border-cyan-900/50 bg-[#08111b]/95 p-4 shadow-[0_18px_40px_rgba(0,0,0,0.45)] backdrop-blur-sm sm:bottom-28 sm:right-8">
+              <div className="mb-3 flex items-center justify-between">
+                <h3 className="text-lg font-semibold text-white">
+                  Travel AI Chat
+                </h3>
+                <button
+                  type="button"
+                  onClick={() => setIsAiChatOpen(false)}
+                  className="rounded-md border border-cyan-700/50 px-2 py-1 text-xs text-gray-100 transition hover:bg-cyan-900/30"
+                >
+                  Close
+                </button>
+              </div>
+
+              <div className="mb-3 max-h-64 space-y-3 overflow-y-auto rounded-xl border border-cyan-900/35 bg-[#02070d]/80 p-3">
+                {chatHistory.map((item, index) => (
+                  <div
+                    key={`${item.role}-${index}`}
+                    className={`rounded-lg px-3 py-2 text-sm leading-relaxed ${
+                      item.role === "assistant"
+                        ? "border border-cyan-800/40 bg-cyan-900/20 text-gray-100"
+                        : "ml-auto max-w-[85%] border border-blue-800/40 bg-blue-900/25 text-blue-100"
+                    }`}
+                  >
+                    {item.text}
+                  </div>
+                ))}
+
+                {isThinking && (
+                  <div className="w-fit rounded-lg border border-cyan-800/40 bg-cyan-900/20 px-3 py-2 text-sm text-gray-100">
+                    Thinking...
+                  </div>
+                )}
+              </div>
+
+              <form onSubmit={handleChatSubmit} className="flex gap-2">
+                <input
+                  type="text"
+                  value={chatInput}
+                  onChange={(event) => setChatInput(event.target.value)}
+                  placeholder="Ask about destinations, budget, or dates"
+                  className="h-11 flex-1 rounded-lg border border-gray-600 bg-[#23272d] px-3 text-sm text-gray-100 outline-none transition placeholder:text-gray-400 focus:border-cyan-500"
+                />
+                <button
+                  type="submit"
+                  disabled={isThinking}
+                  className="h-11 rounded-lg bg-[#2ab5c4] px-4 text-sm font-semibold text-white transition hover:bg-[#1ca3b4] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  Send
+                </button>
+              </form>
+            </div>
+          )}
         </section>
       </main>
       <section
